@@ -1,4 +1,4 @@
-# David Portfolio Starter
+# Yenegh Portfolio Starter
 
 A minimal Next.js starter tailored for a calm architecture portfolio.
 
