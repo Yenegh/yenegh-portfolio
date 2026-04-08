@@ -443,3 +443,59 @@ img {
 .lightbox-close:hover {
   color: #111;
 }
+
+@media (max-width: 768px) {
+  .project-intro {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .project-body,
+  .gallery {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .project-body__text {
+    max-width: 100%;
+  }
+
+  .project-body__text p {
+    max-width: 100%;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .project-facts {
+    margin-top: 8px;
+  }
+
+  .gallery {
+    padding: 24px 0 40px;
+    gap: 20px;
+  }
+
+  .gallery-item {
+    width: 100%;
+  }
+
+  .lightbox {
+    padding: 16px;
+  }
+
+  .lightbox-content {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .lightbox-image {
+    max-width: 100%;
+    max-height: 70vh;
+  }
+
+  .lightbox-close {
+    top: 14px;
+    right: 16px;
+    font-size: 24px;
+  }
+}
