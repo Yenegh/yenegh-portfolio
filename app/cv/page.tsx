@@ -74,7 +74,7 @@ export default function CVPage() {
 
       <section className="cv-section">
         <h2>Contact</h2>
-        <p>Email: yenegh@email.com</p>
+        <p>Email: yenegh@gmail.com</p>
         <p>LinkedIn: linkedin.com/in/yenegh</p>
       </section>
     </main>
