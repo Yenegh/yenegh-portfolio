@@ -277,3 +277,55 @@ img {
     grid-template-columns: 1fr;
   }
 }
+.cv-page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 24px 0 72px;
+}
+
+.cv-header {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  margin-bottom: 40px;
+}
+
+.cv-section {
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+
+.cv-section h2 {
+  margin: 0 0 16px;
+  font-size: 18px;
+}
+
+.cv-section p {
+  max-width: 720px;
+}
+
+.cv-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 10px 0;
+}
+
+.cv-meta {
+  font-weight: 600;
+}
+
+.cv-detail {
+  color: #555;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .cv-item {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cv-detail {
+    text-align: left;
+  }
+}

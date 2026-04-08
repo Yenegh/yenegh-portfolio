@@ -11,6 +11,7 @@ export function Header() {
 
       <nav aria-label="Main navigation">
         <Link href="/">Home</Link>
+        <Link href="/cv">CV</Link>
         <Link href="/archive">Archive</Link>
       </nav>
 
