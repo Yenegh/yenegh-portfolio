@@ -212,6 +212,29 @@ img {
   letter-spacing: -0.03em;
 }
 
+.project-body {
+  max-width: calc(100% - 320px - 24px);
+  padding-top: 24px;
+}
+
+.project-body__text {
+  max-width: 60ch;
+}
+
+.gallery {
+  max-width: calc(100% - 320px - 24px);
+  padding-top: 24px;
+}
+
+.project-intro .lead {
+  margin-bottom: 16px;
+}
+
+.project-body__text p {
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
 .project-facts {
   border-top: 1px solid var(--line);
 }
@@ -231,12 +254,36 @@ img {
 }
 
 .gallery-item {
+  position: relative;
+  margin: 0;
   border: 1px solid var(--line);
   background: #ecece8;
+  overflow: hidden;
 }
 
 .gallery-item img {
+  display: block;
   width: 100%;
+  height: auto;
+  filter: grayscale(28%) saturate(70%) contrast(92%) brightness(103%);
+}
+
+.gallery-image-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-image-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.gallery-item:hover .gallery-image-wrap::after {
+  opacity: 0;
 }
 
 .gallery-item figcaption {
@@ -342,4 +389,57 @@ img {
 .cv-download:hover {
   background: #000;
   color: #fff;
+}
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(244, 244, 242, 0.96);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: min(92vw, 1600px);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+  display: block;
+  filter: none;
+}
+
+.lightbox-caption {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+.lightbox-close:hover {
+  color: #111;
 }

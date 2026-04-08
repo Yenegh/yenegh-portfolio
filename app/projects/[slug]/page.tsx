@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, projects } from "@/data/projects";
+import ProjectGallery from "@/components/ProjectGallery";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -21,12 +21,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <p className="section-label">{project.number}</p>
           <h1>{project.title}</h1>
           <p className="lead">{project.summary}</p>
-
-          <div style={{ paddingTop: "24px" }}>
-            {project.body.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
         </div>
 
         <aside className="project-facts">
@@ -53,14 +47,15 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </aside>
       </section>
 
-      <section className="gallery">
-        {project.images.map((image) => (
-          <figure key={image.src} className="gallery-item">
-            <Image src={image.src} alt={image.alt} width={1600} height={1000} />
-            <figcaption>{image.caption}</figcaption>
-          </figure>
-        ))}
+      <section className="project-body">
+        <div className="project-body__text">
+          {project.body.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
       </section>
+
+      <ProjectGallery images={project.images} />
     </main>
   );
 }
