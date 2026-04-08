@@ -3,6 +3,16 @@ export default function CVPage() {
     <main className="cv-page">
       <section className="cv-header">
         <p className="section-label">Curriculum Vitae</p>
+        <section className="cv-section">
+      <a
+        href="/cv/yenegh-badimayalew-cv.pdf"
+        download
+        className="cv-download"
+      >
+        Download CV
+      </a>
+    </section>
+    
         <h1>Yenegh Badimayalew</h1>
         <p className="lead">
           Architectural Designer with experience across technical delivery,
@@ -77,6 +87,11 @@ export default function CVPage() {
         <p>Email: yenegh@gmail.com</p>
         <p>LinkedIn: linkedin.com/in/yenegh</p>
       </section>
-    </main>
+
+
+    
+    
+  </main>
   );
 }
+

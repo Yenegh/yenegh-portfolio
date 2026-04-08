@@ -329,3 +329,17 @@ img {
     text-align: left;
   }
 }
+.cv-download {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.cv-download:hover {
+  background: #000;
+  color: #fff;
+}
