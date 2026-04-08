@@ -39,12 +39,53 @@ img {
   margin: 0 auto;
 }
 
+/* HEADER */
+
 .site-header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
   padding: 18px 0 32px;
   font-size: 12px;
+  align-items: start;
+}
+
+.site-identity,
+.site-header nav,
+.site-header .tagline {
+  align-self: start;
+}
+
+.site-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.site-title,
+.site-role,
+.site-location {
+  margin: 0;
+}
+
+.site-title a {
+  display: inline-block;
+  font-weight: 800;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.site-title a:hover {
+  opacity: 0.6;
+}
+
+.site-role {
+  font-weight: 500;
+}
+
+.site-location {
+  color: var(--muted);
 }
 
 .site-header nav {
@@ -59,6 +100,8 @@ img {
   text-align: right;
   color: var(--muted);
 }
+
+/* HOME HERO */
 
 .hero {
   display: grid;
@@ -90,6 +133,8 @@ img {
   text-transform: uppercase;
   color: var(--muted);
 }
+
+/* PROJECT TABLE */
 
 .project-table {
   border-top: 1px solid var(--line);
@@ -137,19 +182,12 @@ img {
   content: "";
 }
 
+/* PROJECT CARDS */
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
-}
-
-.project-card {
-  padding: 18px;
-  border: 1px solid var(--line);
-  min-height: 220px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .project-card {
@@ -193,6 +231,8 @@ img {
   gap: 2px;
 }
 
+/* PROJECT PAGE */
+
 .project-page {
   border-top: 1px solid var(--line);
   padding-top: 24px;
@@ -212,6 +252,10 @@ img {
   letter-spacing: -0.03em;
 }
 
+.project-intro .lead {
+  margin-bottom: 16px;
+}
+
 .project-body {
   max-width: calc(100% - 320px - 24px);
   padding-top: 24px;
@@ -221,17 +265,8 @@ img {
   max-width: 60ch;
 }
 
-.gallery {
-  max-width: calc(100% - 320px - 24px);
-  padding-top: 24px;
-}
-
-.project-intro .lead {
-  margin-bottom: 16px;
-}
-
 .project-body__text p {
-  margin-bottom: 16px;
+  margin: 0 0 16px;
   line-height: 1.6;
 }
 
@@ -247,9 +282,12 @@ img {
   border-bottom: 1px solid var(--line);
 }
 
+/* GALLERY */
+
 .gallery {
   display: grid;
   gap: 16px;
+  max-width: calc(100% - 320px - 24px);
   padding: 12px 0 48px;
 }
 
@@ -259,13 +297,7 @@ img {
   border: 1px solid var(--line);
   background: #ecece8;
   overflow: hidden;
-}
-
-.gallery-item img {
-  display: block;
-  width: 100%;
-  height: auto;
-  filter: grayscale(28%) saturate(70%) contrast(92%) brightness(103%);
+  cursor: pointer;
 }
 
 .gallery-image-wrap {
@@ -286,6 +318,13 @@ img {
   opacity: 0;
 }
 
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: grayscale(28%) saturate(70%) contrast(92%) brightness(103%);
+}
+
 .gallery-item figcaption {
   padding: 10px 12px;
   font-size: 12px;
@@ -293,37 +332,8 @@ img {
   border-top: 1px solid var(--line);
 }
 
-.footer-note {
-  border-top: 1px solid var(--line);
-  padding: 16px 0 32px;
-  color: var(--muted);
-  font-size: 12px;
-}
+/* CV */
 
-@media (max-width: 900px) {
-  .site-header,
-  .hero,
-  .project-intro,
-  .project-row,
-  .project-table-head {
-    grid-template-columns: 1fr;
-  }
-
-  .site-header nav,
-  .site-header .tagline {
-    justify-self: start;
-    text-align: left;
-  }
-
-  .project-row,
-  .project-table-head {
-    gap: 8px;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
-}
 .cv-page {
   max-width: 920px;
   margin: 0 auto;
@@ -366,16 +376,6 @@ img {
   text-align: right;
 }
 
-@media (max-width: 768px) {
-  .cv-item {
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .cv-detail {
-    text-align: left;
-  }
-}
 .cv-download {
   display: inline-block;
   margin-top: 24px;
@@ -390,6 +390,9 @@ img {
   background: #000;
   color: #fff;
 }
+
+/* LIGHTBOX */
+
 .lightbox {
   position: fixed;
   inset: 0;
@@ -444,6 +447,33 @@ img {
   color: #111;
 }
 
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .site-header,
+  .hero,
+  .project-intro,
+  .project-row,
+  .project-table-head {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header nav,
+  .site-header .tagline {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .project-row,
+  .project-table-head {
+    gap: 8px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .project-intro {
     grid-template-columns: 1fr;
@@ -456,14 +486,9 @@ img {
     width: 100%;
   }
 
-  .project-body__text {
-    max-width: 100%;
-  }
-
+  .project-body__text,
   .project-body__text p {
     max-width: 100%;
-    margin-bottom: 16px;
-    line-height: 1.6;
   }
 
   .project-facts {
@@ -479,13 +504,22 @@ img {
     width: 100%;
   }
 
+  .cv-item {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cv-detail {
+    text-align: left;
+  }
+
   .lightbox {
     padding: 16px;
   }
 
   .lightbox-content {
-    max-width: 100%;
     width: 100%;
+    max-width: 100%;
   }
 
   .lightbox-image {

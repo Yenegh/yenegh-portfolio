@@ -3,11 +3,17 @@ import Link from "next/link";
 export function Header() {
   return (
     <header className="site-header">
-      <div>
-        <div><Link href="/">YENEGH BADIMAYALEW</Link>
-        <div></div><strong>Architectural Designer | MArch(Prof)</strong></div>
-        <div>Auckland, New Zealand</div>
-      </div>
+        <div className="site-identity">
+  <p className="site-title">
+    <Link href="/">YENEGH BADIMAYALEW</Link>
+  </p>
+  <p className="site-role">
+    Architectural Designer | MArch(Prof)
+  </p>
+  <p className="site-location">
+    Auckland, New Zealand
+  </p>
+</div>
 
       <nav aria-label="Main navigation">
         <Link href="/">Home</Link>
