@@ -16,9 +16,38 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  
+  {
+    slug: "manawataki",
+    number: "01",
+    title: "Manawataki",
+    year: "2025",
+    category: "Thesis",
+    scale: "Architectural Research",
+    status: "Research",
+    summary:
+      "A research-led project exploring architecture as ecological partner through narrative, drawing, and typological reframing.",
+    scope: ["Research", "Drawing", "Spatial Narrative"],
+    tags: ["Ecology", "Thesis", "Representation", "Speculation"],
+    featured: false,
+    cardImage: "/images/manawataki/card.jpg",
+    body: [
+      "Use this project slot for one of your conceptual or thesis works. The page is already wired into the archive and homepage.",
+      "You can add more images, remove sample text, and expand the body as needed. The starter is intentionally minimal so it stays editable in VS Code.",
+      "When you are ready, duplicate the project object in data/projects.ts and change the slug, title, and images."
+    ],
+    images: [
+      {
+        src: "/images/manawataki/01.svg",
+        alt: "Manawataki placeholder image one",
+        caption: "Replace with your own thesis drawing or collage."
+      }
+    ]
+  },
+
   {
     slug: "panuku-housing",
-    number: "01",
+    number: "02",
     title: "Panuku Housing",
     year: "2024",
     category: "Housing",
@@ -45,33 +74,6 @@ export const projects: Project[] = [
         src: "/images/panuku-housing/02.svg",
         alt: "Panuku Housing placeholder image two",
         caption: "Use captions for role, scale, package type, or drawing note."
-      }
-    ]
-  },
-  {
-    slug: "manawataki",
-    number: "02",
-    title: "Manawataki",
-    year: "2025",
-    category: "Thesis",
-    scale: "Architectural Research",
-    status: "Research",
-    summary:
-      "A research-led project exploring architecture as ecological partner through narrative, drawing, and typological reframing.",
-    scope: ["Research", "Drawing", "Spatial Narrative"],
-    tags: ["Ecology", "Thesis", "Representation", "Speculation"],
-    featured: true,
-    cardImage: "/images/manawataki/card.jpg",
-    body: [
-      "Use this project slot for one of your conceptual or thesis works. The page is already wired into the archive and homepage.",
-      "You can add more images, remove sample text, and expand the body as needed. The starter is intentionally minimal so it stays editable in VS Code.",
-      "When you are ready, duplicate the project object in data/projects.ts and change the slug, title, and images."
-    ],
-    images: [
-      {
-        src: "/images/manawataki/01.svg",
-        alt: "Manawataki placeholder image one",
-        caption: "Replace with your own thesis drawing or collage."
       }
     ]
   },
@@ -114,7 +116,7 @@ export const projects: Project[] = [
       "A residential renovation project in Devonport involving the reworking of an existing dwelling to improve spatial flow, functionality, and connection to its site context.",
     scope: ["Technical Documentation", "Design Development", "Coordination"],
     tags: ["Residential", "Renovation", "Built"],
-    featured: true,
+    featured: false,
     cardImage: "/images/devonport-renovation/card.jpg",
     body: [
       "This project involved the renovation of an existing residential dwelling in Devonport, working within the constraints of the existing structure while improving spatial organisation and liveability. The design approach focused on refining internal layouts and strengthening connections between interior spaces and the surrounding site.",
@@ -128,7 +130,35 @@ export const projects: Project[] = [
         caption: "Residential renovation project in Devonport."
       }
     ]
+  },
+  {
+    slug: "interior-renovation",
+    number: "05",
+    title: "Interior Renovation",
+    year: "2022",
+    category: "Bathroom Renovation",
+    scale: "Residential",
+    status: "Built",
+    summary:
+      "A residential renovation project in Devonport involving the reworking of an existing dwelling to improve spatial flow, functionality, and connection to its site context.",
+    scope: ["Technical Documentation", "Design Development", "Coordination"],
+    tags: ["Residential", "Renovation", "Built"],
+    featured: false,
+    cardImage: "/images/interior-renovation/card.jpg",
+    body: [
+      "This project involved the renovation of an existing residential dwelling in Devonport, working within the constraints of the existing structure while improving spatial organisation and liveability. The design approach focused on refining internal layouts and strengthening connections between interior spaces and the surrounding site.",
+      "My role focused on developing drawing packages and resolving design information through coordination and iterative refinement. This included producing documentation suitable for construction and working through the practical constraints associated with modifying an existing building.",
+      "The project demonstrates the ability to work at a smaller residential scale while navigating the challenges of renovation, including existing conditions, spatial limitations, and buildability. It adds a domestic and detail-focused layer to the overall portfolio."
+    ],
+    images: [
+      {
+        src: "/images/interior-renovation/01.png",
+        alt: "Interior residential renovation view",
+        caption: "Bathroom renovation project."
+      }
+    ]
   }
+  
 ];
 
 export function getProjectBySlug(slug: string) {
