@@ -8,32 +8,39 @@ import { projects } from "@/data/projects";
 export default function ArchivePage() {
   const [view, setView] = useState<"index" | "overview">("index");
 
+  const description =
+    view === "index"
+      ? "A structured index of work by project, type, scope, and year."
+      : "A visual overview of selected work across projects.";
+
   return (
     <main>
       <section className="archive-header">
-        <div>
-          <p className="section-label">
+        <div className="archive-header__top">
+          <div className="archive-toggle" role="tablist" aria-label="Archive view">
             <button
               type="button"
-              className={`archive-view-toggle ${view === "overview" ? "is-active" : ""}`}
+              className={`archive-toggle__button ${
+                view === "overview" ? "is-active" : ""
+              }`}
               onClick={() => setView("overview")}
             >
               Overview
             </button>
-            {" / "}
+
             <button
               type="button"
-              className={`archive-view-toggle ${view === "index" ? "is-active" : ""}`}
+              className={`archive-toggle__button ${
+                view === "index" ? "is-active" : ""
+              }`}
               onClick={() => setView("index")}
             >
               Index
             </button>
-          </p>
+          </div>
 
           <h1 className="page-title">Archive</h1>
-          <p className="lead">
-            A structured view of work by project, type, scope, and year.
-          </p>
+          <p className="lead">{description}</p>
         </div>
       </section>
 
