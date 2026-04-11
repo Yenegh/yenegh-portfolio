@@ -13,6 +13,7 @@ export type Project = {
   images: { src: string; alt: string; caption: string }[];
   featured: boolean;
   cardImage?: string;
+  heroImage?: string;
 };
 
 export const projects: Project[] = [
@@ -25,6 +26,7 @@ export const projects: Project[] = [
     category: "Thesis",
     scale: "Architectural Research",
     status: "Research",
+    heroImage: "/images/manawataki/hero.jpg",
     summary:
       "A research-led project exploring architecture as ecological partner through narrative, drawing, and typological reframing.",
     scope: ["Research", "Drawing", "Spatial Narrative"],
@@ -38,10 +40,25 @@ export const projects: Project[] = [
     ],
     images: [
       {
-        src: "/images/manawataki/01.svg",
-        alt: "Manawataki placeholder image one",
-        caption: "Replace with your own thesis drawing or collage."
-      }
+    src: "/images/manawataki/plan-01.jpg",
+    alt: "Ground floor plan",
+    caption: "Ground floor plan."
+  },
+  {
+    src: "/images/manawataki/detail-01.png",
+    alt: "Detail drawing one",
+    caption: "Detail study."
+  },
+  {
+    src: "/images/manawataki/plan-02.jpg",
+    alt: "Detail drawing two",
+    caption: "Drawing extract."
+  },
+  {
+    src: "/images/manawataki/Axon-01.jpg",
+    alt: "Perspective render",
+    caption: "Perspective view."
+  }
     ]
   },
 

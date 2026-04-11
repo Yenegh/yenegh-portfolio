@@ -6,7 +6,8 @@
   --bg: #f4f4f2;
   --fg: #1e1e1e;
   --muted: #737373;
-  --line: #eeeeea;
+  --line: #e7e7e2;
+  --line-strong: #dcdcd6;
   --max: 1440px;
 }
 
@@ -25,6 +26,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -38,17 +41,24 @@ img {
   height: auto;
 }
 
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
 .site-shell {
   width: min(var(--max), calc(100vw - 32px));
   margin: 0 auto;
 }
-
 
 /* =========================================================
    02. HEADER
    ========================================================= */
 
 .site-header {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
@@ -109,7 +119,6 @@ img {
   color: var(--muted);
 }
 
-
 /* =========================================================
    03. HAMBURGER / MOBILE MENU
    ========================================================= */
@@ -137,22 +146,14 @@ img {
 
 .mobile-menu {
   position: absolute;
-  top: 60px;           /* adjust if header height changes */
+  top: 60px;
   right: 0;
   width: 200px;
-
   background: var(--bg);
   border: 1px solid var(--line);
-
   padding: 16px;
-
   z-index: 100;
 }
-
-.site-header {
-  position: relative; /* anchor for dropdown */
-}
-
 
 /* =========================================================
    04. TYPOGRAPHY / SHARED ELEMENTS
@@ -160,7 +161,8 @@ img {
 
 .section-label {
   margin: 0 0 14px;
-  font-size: 12px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -194,7 +196,6 @@ img {
   content: "";
 }
 
-
 /* =========================================================
    05. HOME HERO
    ========================================================= */
@@ -219,7 +220,6 @@ img {
   letter-spacing: -0.03em;
   line-height: 0.98;
 }
-
 
 /* =========================================================
    06. HOME PROJECT CARDS
@@ -312,7 +312,6 @@ img {
   background: rgba(255, 255, 255, 0.12);
 }
 
-
 /* =========================================================
    07. ARCHIVE HEADER / TOGGLE
    ========================================================= */
@@ -354,7 +353,6 @@ img {
   color: var(--fg);
 }
 
-
 /* =========================================================
    08. ARCHIVE INDEX TABLE
    ========================================================= */
@@ -382,7 +380,6 @@ img {
 .project-row:hover {
   background: rgba(0, 0, 0, 0.02);
 }
-
 
 /* =========================================================
    09. ARCHIVE OVERVIEW - DESKTOP
@@ -454,7 +451,6 @@ img {
   background: rgba(0, 0, 0, 0.015);
 }
 
-
 /* =========================================================
    10. ARCHIVE OVERVIEW - MOBILE
    ========================================================= */
@@ -506,37 +502,82 @@ img {
   color: var(--muted);
 }
 
-
 /* =========================================================
    11. PROJECT PAGE
    ========================================================= */
 
 .project-page {
   border-top: 1px solid var(--line);
-  padding-top: 50px;
+  padding-top: 40px;
+}
+
+.project-hero {
+  padding-bottom: 18px;
+}
+
+.project-hero__figure {
+  margin: 0;
+  background: #ecece8;
+}
+
+.project-hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .project-intro {
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 24px;
-  padding-bottom: 32px;
+  padding-bottom: 14px;
+}
+
+.project-intro__text {
+  max-width: 72ch;
 }
 
 .project-intro h1 {
   margin: 0 0 12px;
-  font-size: clamp(28px, 4vw, 56px);
-  line-height: 1;
+  font-size: clamp(30px, 4vw, 56px);
+  line-height: 0.98;
   letter-spacing: -0.03em;
+  font-weight: 400;
+  max-width: 16ch;
 }
 
 .project-intro .lead {
-  margin-bottom: 16px;
+  margin: 0;
+  max-width: 42ch;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #3f3f3f;
+}
+
+.project-meta {
+  padding-bottom: 28px;
+}
+
+.project-meta__line {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.project-meta__line span::after {
+  content: "/";
+  margin-left: 6px;
+}
+
+.project-meta__line span:last-child::after {
+  content: "";
 }
 
 .project-body {
-  max-width: calc(100% - 320px - 24px);
-  padding-top: 24px;
+  max-width: 760px;
+  padding-bottom: 0;
 }
 
 .project-body__text {
@@ -545,72 +586,68 @@ img {
 
 .project-body__text p {
   margin: 0 0 16px;
-  line-height: 1.6;
+  line-height: 1.68;
+  color: #2f2f2f;
 }
 
-.project-facts {
-  border-top: 1px solid var(--line);
+.project-body__text p:last-child {
+  margin-bottom: 0;
 }
-
-.project-facts div {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--line);
-}
-
 
 /* =========================================================
    12. PROJECT GALLERY / LIGHTBOX
    ========================================================= */
 
+.project-gallery-section {
+  padding-top: 56px;
+}
+
 .gallery {
   display: grid;
-  gap: 16px;
-  max-width: calc(100% - 320px - 24px);
-  padding: 12px 0 48px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 24px 20px;
+  max-width: 100%;
+  padding: 0 0 48px;
 }
 
 .gallery-item {
-  position: relative;
   margin: 0;
-  border: 1px solid var(--line);
-  background: #ecece8;
-  overflow: hidden;
   cursor: pointer;
+}
+
+.gallery-item--full {
+  grid-column: 1 / -1;
+}
+
+.gallery-item--half {
+  grid-column: span 6;
 }
 
 .gallery-image-wrap {
   position: relative;
   overflow: hidden;
-}
-
-.gallery-image-wrap::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.8);
-  pointer-events: none;
-  transition: opacity 0.28s ease;
-}
-
-.gallery-item:hover .gallery-image-wrap::after {
-  opacity: 0;
+  background: #ecece8;
 }
 
 .gallery-item img {
   display: block;
   width: 100%;
   height: auto;
-  filter: grayscale(28%) saturate(70%) contrast(92%) brightness(103%);
+  filter: none;
+  transition: transform 0.28s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.01);
 }
 
 .gallery-item figcaption {
-  padding: 10px 12px;
-  font-size: 12px;
+  margin-top: 8px;
+  padding: 0;
+  font-size: 11px;
+  line-height: 1.4;
   color: var(--muted);
-  border-top: 1px solid var(--line);
+  border: none;
 }
 
 .lightbox {
@@ -621,7 +658,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px;
+  padding: 24px;
 }
 
 .lightbox-content {
@@ -637,14 +674,14 @@ img {
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 82vh;
+  max-height: 84vh;
   object-fit: contain;
   display: block;
   filter: none;
 }
 
 .lightbox-caption {
-  margin: 12px 0 0;
+  margin: 10px 0 0;
   font-size: 12px;
   color: var(--muted);
   text-align: center;
@@ -652,8 +689,8 @@ img {
 
 .lightbox-close {
   position: fixed;
-  top: 20px;
-  right: 24px;
+  top: 18px;
+  right: 20px;
   border: none;
   background: transparent;
   color: #555;
@@ -663,10 +700,85 @@ img {
   padding: 6px 10px;
 }
 
-.lightbox-close:hover {
-  color: #222;
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 42px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 12px;
 }
 
+.lightbox-nav--prev {
+  left: 12px;
+}
+
+.lightbox-nav--next {
+  right: 12px;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+  color: #111;
+}
+
+@media (max-width: 768px) {
+  .project-gallery-section {
+    padding-top: 48px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px 0 40px;
+  }
+
+  .gallery-item--full,
+  .gallery-item--half {
+    grid-column: auto;
+  }
+
+  .gallery-item figcaption {
+    margin-top: 6px;
+  }
+
+  .lightbox {
+    padding: 16px;
+  }
+
+  .lightbox-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .lightbox-image {
+    max-width: 100%;
+    max-height: 72vh;
+  }
+
+  .lightbox-close {
+    top: 14px;
+    right: 16px;
+    font-size: 24px;
+  }
+
+  .lightbox-nav {
+    font-size: 30px;
+    padding: 8px;
+  }
+
+  .lightbox-nav--prev {
+    left: 4px;
+  }
+
+  .lightbox-nav--next {
+    right: 4px;
+  }
+}
 
 /* =========================================================
    13. CV
@@ -729,7 +841,6 @@ img {
   color: #fff;
 }
 
-
 /* =========================================================
    14. RESPONSIVE - TABLET
    ========================================================= */
@@ -771,14 +882,29 @@ img {
     grid-template-columns: 1fr;
     gap: 8px;
   }
-}
 
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-item--full {
+    grid-column: 1 / -1;
+  }
+
+  .gallery-item--half {
+    grid-column: span 1;
+  }
+}
 
 /* =========================================================
    15. RESPONSIVE - MOBILE
    ========================================================= */
 
 @media (max-width: 768px) {
+  .site-shell {
+    width: min(var(--max), calc(100vw - 24px));
+  }
+
   .site-header {
     grid-template-columns: 1fr auto;
     gap: 12px;
@@ -813,7 +939,7 @@ img {
   .mobile-menu__nav a {
     text-transform: uppercase;
     font-size: 13px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   }
 
   .hero {
@@ -855,6 +981,13 @@ img {
     color: var(--muted);
   }
 
+  .project-facts {
+  gap: 6px 12px;
+}
+
+.project-facts--compact span {
+  font-size: 12px;
+}
   .archive-overview--desktop {
     display: none;
   }
@@ -898,33 +1031,76 @@ img {
     font-weight: 600;
   }
 
+  .project-page {
+    padding-top: 28px;
+  }
+
+  .project-hero {
+    padding-bottom: 14px;
+  }
+
   .project-intro {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    padding-bottom: 12px;
+  }
+
+  .project-intro__text {
+    max-width: 100%;
+  }
+
+  .project-intro h1 {
+    margin-bottom: 10px;
+    max-width: 100%;
+    font-size: clamp(28px, 9vw, 40px);
+  }
+
+  .project-intro .lead {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .project-meta {
+    padding-bottom: 22px;
+  }
+
+  .project-meta__line {
+    gap: 5px;
+    font-size: 11px;
+  }
+
+  .project-meta__line span::after {
+    margin-left: 5px;
   }
 
   .project-body,
-  .gallery {
+  .project-body__text {
     max-width: 100%;
     width: 100%;
   }
 
-  .project-body__text,
   .project-body__text p {
     max-width: 100%;
+    margin-bottom: 14px;
+    line-height: 1.62;
   }
 
-  .project-facts {
-    margin-top: 8px;
+  .project-gallery-section {
+    padding-top: 48px;
   }
 
   .gallery {
-    padding: 24px 0 40px;
+    grid-template-columns: 1fr;
     gap: 20px;
+    padding-bottom: 40px;
   }
 
-  .gallery-item {
-    width: 100%;
+  .gallery-item--full,
+  .gallery-item--half {
+    grid-column: auto;
+  }
+
+  .gallery-item figcaption {
+    margin-top: 6px;
+    font-size: 11px;
   }
 
   .cv-item {
@@ -947,12 +1123,25 @@ img {
 
   .lightbox-image {
     max-width: 100%;
-    max-height: 70vh;
+    max-height: 72vh;
   }
 
   .lightbox-close {
-    top: 14px;
-    right: 16px;
+    top: 10px;
+    right: 12px;
     font-size: 24px;
+  }
+
+  .lightbox-nav {
+    font-size: 30px;
+    padding: 8px;
+  }
+
+  .lightbox-nav--prev {
+    left: 4px;
+  }
+
+  .lightbox-nav--next {
+    right: 4px;
   }
 }
