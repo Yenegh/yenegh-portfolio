@@ -106,9 +106,10 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
               className="lightbox-nav lightbox-nav--prev"
               onClick={(event) => {
                 event.stopPropagation();
-                setActiveIndex(
-                  (activeIndex - 1 + images.length) % images.length
-                );
+                setActiveIndex((prev) => {
+                  if (prev === null) return prev;
+                  return (prev - 1 + images.length) % images.length;
+                });
               }}
               aria-label="Previous image"
               type="button"
@@ -140,7 +141,10 @@ export default function ProjectGallery({ images }: ProjectGalleryProps) {
               className="lightbox-nav lightbox-nav--next"
               onClick={(event) => {
                 event.stopPropagation();
-                setActiveIndex((activeIndex + 1) % images.length);
+                setActiveIndex((prev) => {
+                  if (prev === null) return prev;
+                  return (prev + 1) % images.length;
+                });
               }}
               aria-label="Next image"
               type="button"
