@@ -16,8 +16,7 @@ export function Header() {
             YENEGH BADIMAYALEW
           </Link>
         </p>
-        <p className="site-role">Architectural Designer | MArch(Prof)</p>
-        <p className="site-location">Auckland, New Zealand</p>
+        <p className="site-role">Architectural Designer</p>
       </div>
 
       <nav className="main-nav" aria-label="Main navigation">
