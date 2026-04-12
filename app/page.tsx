@@ -9,7 +9,6 @@ export default function HomePage() {
     <main>
       <section className="hero">
         <div>
-          <p className="section-label">Portfolio</p>
           <h1>Design-led thinking with delivery fluency.</h1>
         </div>
         <div>

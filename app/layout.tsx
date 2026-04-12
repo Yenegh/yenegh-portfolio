@@ -42,7 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   {/* RIGHT — contact */}
   <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
     <a
-      href="mailto:yenegh@email.com"
+      href="mailto:yenegh@gmail.com"
       style={{ textDecoration: "none", color: "inherit" }}
     >
       Email

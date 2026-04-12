@@ -26,8 +26,6 @@ export function Header() {
         <Link href="/archive">Archive</Link>
       </nav>
 
-      <div className="tagline">Design-led architecture portfolio.</div>
-
       <button
         type="button"
         className="hamburger"
