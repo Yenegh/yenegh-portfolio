@@ -3,7 +3,7 @@ export default function CVPage() {
     <main className="cv-page">
       <section className="cv-header">
 
-        <a className="cv-download" href="/cv/Yenegh-Badimayalew-CV.pdf" download>
+        <a className="cv-download" href="/cv/yenegh-badimayalew-cv.pdf" download>
           Download CV
         </a>
       </section>
