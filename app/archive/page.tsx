@@ -6,7 +6,7 @@ import { ArchiveOverview } from "@/components/ArchiveOverview";
 import { projects } from "@/data/projects";
 
 export default function ArchivePage() {
-  const [view, setView] = useState<"index" | "overview">("index");
+  const [view, setView] = useState<"index" | "overview">("overview");
 
   const description =
     view === "index"

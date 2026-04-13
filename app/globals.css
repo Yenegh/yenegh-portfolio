@@ -269,9 +269,9 @@ select {
 
 .project-card__media img {
   position: absolute;
-  right: 18px;
-  bottom: 18px;
-  width: 58%;
+  right: 10px;
+  bottom: 10px;
+  width: 64%;
   height: auto;
   object-fit: contain;
   opacity: 0.5;
@@ -819,6 +819,10 @@ select {
   line-height: 1.6;
 }
 
+.cv-section .cv-item + p {
+  margin-top: 0;
+}
+
 .cv-item {
   display: flex;
   justify-content: space-between;
@@ -1013,12 +1017,12 @@ select {
   }
 
   .project-card__media img {
-    width: 48%;
-    right: 12px;
-    bottom: 12px;
+    width: 54%;
+    right: 8px;
+    bottom: 8px;
     opacity: 0.45;
     filter: grayscale(75%) contrast(1.05);
-    transform: scale(0.95);
+    transform: scale(0.98);
   }
 
   .project-card:hover .project-card__media img {

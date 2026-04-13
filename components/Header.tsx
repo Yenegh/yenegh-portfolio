@@ -30,7 +30,7 @@ export function Header() {
           Portfolio
         </Link>
         <Link href="/cv" className={pathname === "/cv" ? "is-active" : ""}>
-          CV
+          About
         </Link>
         <Link
           href="/archive"
@@ -62,7 +62,7 @@ export function Header() {
               Portfolio
             </Link>
             <Link href="/cv" onClick={closeMenu}>
-              CV
+              About
             </Link>
             <Link href="/archive" onClick={closeMenu}>
               Archive
