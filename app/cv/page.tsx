@@ -2,7 +2,6 @@ export default function CVPage() {
   return (
     <main className="cv-page">
       <section className="cv-header">
-        <p className="section-label">About</p>
 
         <a className="cv-download" href="/cv/Yenegh-Badimayalew-CV.pdf" download>
           Download CV
