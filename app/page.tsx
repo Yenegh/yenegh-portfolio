@@ -1,66 +1,63 @@
-import Link from "next/link";
-import Image from "next/image";
-import { projects } from "@/data/projects";
+"use client";
 
-export default function HomePage() {
-  const featuredProjects = projects.filter((project) => project.featured);
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+export default function LandingPage() {
+  const [showNav, setShowNav] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowNav(true);
+    }, 1400);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleNavigate = (href: string) => {
+    setIsExiting(true);
+
+    setTimeout(() => {
+      router.push(href);
+    }, 450);
+  };
 
   return (
-    <main>
-      <section className="hero">
-        <div>
-          <h1>Design-led thinking with delivery fluency.</h1>
-        </div>
-        <div>
-          <p className="lead">
-            This portfolio brings together built work, technical delivery, and
-            design research, positioning architecture as both a practical and
-            ecological discipline.
-          </p>
-        </div>
-      </section>
+    <main className={`landing-page ${isExiting ? "is-exiting" : ""}`}>
+      <div className="landing-page__inner">
+        <p className="landing-page__name">YENEGH BADIMAYALEW</p>
 
-      <section className="home-projects">
-        <p className="section-label">Selected Projects</p>
+        <nav
+          className={`landing-page__nav ${showNav ? "is-visible" : ""}`}
+          aria-label="Landing navigation"
+        >
+          <button
+            type="button"
+            className="landing-page__link"
+            onClick={() => handleNavigate("/portfolio")}
+          >
+            Portfolio
+          </button>
 
-        <div className="card-grid card-grid--atmospheric">
-          {featuredProjects.map((project) => (
-            <Link
-              key={project.slug}
-              href={`/projects/${project.slug}`}
-              className="project-card project-card--image"
-            >
-              <div className="project-card__media" aria-hidden="true">
-                {project.cardImage && (
-                  <Image
-                    src={project.cardImage}
-                    alt=""
-                    width={1200}
-                    height={800}
-                  />
-                )}
-              </div>
+          <button
+            type="button"
+            className="landing-page__link"
+            onClick={() => handleNavigate("/archive")}
+          >
+            Archive
+          </button>
 
-              <div className="project-card__content">
-                <div>
-                  <div className="section-label">{project.number}</div>
-                  <h3>{project.title}</h3>
-                  <p>{project.summary}</p>
-                </div>
-
-                <div className="project-card__meta">
-                  <div>{project.category}</div>
-                  <div>{project.year}</div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section style={{ padding: "48px 0 56px" }}>
-        <Link href="/archive">View full archive →</Link>
-      </section>
+          <button
+            type="button"
+            className="landing-page__link"
+            onClick={() => handleNavigate("/cv")}
+          >
+            CV
+          </button>
+        </nav>
+      </div>
     </main>
   );
 }

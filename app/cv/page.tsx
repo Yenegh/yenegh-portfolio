@@ -2,33 +2,34 @@ export default function CVPage() {
   return (
     <main className="cv-page">
       <section className="cv-header">
-        <p className="section-label">Curriculum Vitae</p>
-        <section className="cv-section">
-      <a
-        href="/cv/yenegh-badimayalew-cv.pdf"
-        download
-        className="cv-download"
-      >
-        Download CV
-      </a>
-    </section>
-    
-        <h1>Yenegh Badimayalew</h1>
-        <p className="lead">
-          Architectural Designer with experience across technical delivery,
-          consultant coordination, adaptive reuse, housing, and design-led
-          research.
-        </p>
+        <p className="section-label">About</p>
+
+        <a className="cv-download" href="/cv/Yenegh-Badimayalew-CV.pdf" download>
+          Download CV
+        </a>
       </section>
 
       <section className="cv-section">
-        <h2>Profile</h2>
+        <h1 className="page-title">Yenegh Badimayalew</h1>
+      </section>
+
+      <section className="cv-section">
+        <h2>About</h2>
         <p>
-          Design-led architectural graduate with a strong grounding in technical
-          documentation, consultant coordination, and project delivery. My work
-          spans housing, civic adaptive reuse, and research-driven design,
-          bringing together spatial thinking, buildability, and a growing
-          interest in architecture as an ecological partner.
+          Architectural Designer with a Master of Architecture (Professional,
+          First Class Honours) and over 10 years of experience across
+          residential, multi-unit housing, and remediation projects in
+          Aotearoa.
+        </p>
+        <p>
+          Experienced in Revit-based documentation from developed design
+          through to consent, with strong capability in NZ Building Code
+          compliance, consultant coordination, and Homestar assessment.
+        </p>
+        <p>
+          Brings a practical understanding of construction, documentation, and
+          weathertightness alongside a design-led approach to housing and
+          environmentally responsive architecture.
         </p>
       </section>
 
@@ -37,22 +38,51 @@ export default function CVPage() {
 
         <div className="cv-item">
           <div className="cv-meta">Collate Limited · Director</div>
+          <div className="cv-detail">Auckland · 2017–2025</div>
+        </div>
+        <p>
+          Led residential and small commercial projects from concept through to
+          consent and construction documentation. Delivered Revit-based drawing
+          sets, coordinated consultant input, and managed compliance,
+          programme, and client scope.
+        </p>
+
+        <div className="cv-item">
+          <div className="cv-meta">Oxygen Architecture · Architectural Designer</div>
+          <div className="cv-detail">Auckland · 2022–2023</div>
+        </div>
+        <p>
+          Contributed to design development and documentation in a design-led
+          practice. Produced Revit documentation for planning, building consent,
+          and construction, and coordinated detailing and compliance with senior
+          staff and consultants.
+        </p>
+
+        <div className="cv-item">
+          <div className="cv-meta">
+            Kingstone Property Group · Architectural Designer | Homestar Consultant
+          </div>
+          <div className="cv-detail">Auckland · 2020</div>
+        </div>
+        <p>
+          Worked across housing documentation and sustainability inputs,
+          balancing developer constraints with design intent, compliance, and
+          Homestar requirements.
+        </p>
+
+        <div className="cv-item">
+          <div className="cv-meta">Bespoke NZ Design · Architectural Designer</div>
           <div className="cv-detail">Auckland · 3 years</div>
         </div>
 
         <div className="cv-item">
-          <div className="cv-meta">Bespoke NZ Design</div>
-          <div className="cv-detail">Architectural design and documentation · 3 years</div>
+          <div className="cv-meta">Scribble Ltd · Architectural Designer</div>
+          <div className="cv-detail">Auckland · 2 years</div>
         </div>
 
         <div className="cv-item">
-          <div className="cv-meta">Scribble Ltd</div>
-          <div className="cv-detail">Architectural design and documentation · 2 years</div>
-        </div>
-
-        <div className="cv-item">
-          <div className="cv-meta">Maynard Marks</div>
-          <div className="cv-detail">Architectural role · 9 months</div>
+          <div className="cv-meta">Maynard Marks · Architectural Role</div>
+          <div className="cv-detail">Auckland · 9 months</div>
         </div>
       </section>
 
@@ -60,7 +90,9 @@ export default function CVPage() {
         <h2>Education</h2>
 
         <div className="cv-item">
-          <div className="cv-meta">Master of Architecture (Professional)</div>
+          <div className="cv-meta">
+            Master of Architecture (Professional, First Class Honours)
+          </div>
         </div>
 
         <div className="cv-item">
@@ -71,27 +103,12 @@ export default function CVPage() {
       <section className="cv-section">
         <h2>Skills</h2>
         <p>
-          Autodesk Revit, technical documentation, consultant coordination,
-          Adobe Illustrator, Adobe InDesign, architectural drawing, design
-          development, BIM workflows, rendering, visual communication.
+          Revit, technical documentation, NZ Building Code compliance,
+          consultant coordination, Homestar assessment, drawing production,
+          architectural detailing, design development, BIM workflows, Adobe
+          Illustrator, Adobe InDesign, visual communication, and rendering.
         </p>
       </section>
-
-      <section className="cv-section">
-        <h2>Professional Affiliations</h2>
-        <p>NZIA Graduate Member</p>
-      </section>
-
-      <section className="cv-section">
-        <h2>Contact</h2>
-        <p>Email: yenegh@gmail.com</p>
-        <p>LinkedIn: linkedin.com/in/yenegh</p>
-      </section>
-
-
-    
-    
-  </main>
+    </main>
   );
 }
-
