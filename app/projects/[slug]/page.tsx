@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { getProjectBySlug, projects } from "@/data/projects";
 import ProjectGallery from "@/components/ProjectGallery";
+import ProjectHeroLightbox from "@/components/ProjectHeroLightbox";
 
 type ProjectImage = {
   src: string;
@@ -47,35 +47,6 @@ function buildGallery(project: ProjectRecord) {
     }));
   }
 
-  if (project.heroImage) {
-    return [
-      {
-        src: project.heroImage,
-        alt: `${project.title} placeholder 1`,
-        caption: "Placeholder image 01",
-        layout: "full" as const,
-      },
-      {
-        src: project.heroImage,
-        alt: `${project.title} placeholder 2`,
-        caption: "Placeholder image 02",
-        layout: "half" as const,
-      },
-      {
-        src: project.heroImage,
-        alt: `${project.title} placeholder 3`,
-        caption: "Placeholder image 03",
-        layout: "half" as const,
-      },
-      {
-        src: project.heroImage,
-        alt: `${project.title} placeholder 4`,
-        caption: "Placeholder image 04",
-        layout: "full" as const,
-      },
-    ];
-  }
-
   return [];
 }
 
@@ -97,45 +68,32 @@ export default async function ProjectPage({
   return (
     <article className="project-page">
       {project.heroImage ? (
-        <section className="project-hero">
-          <figure className="project-hero__figure">
-            <Image
-              src={project.heroImage}
-              alt={project.title}
-              width={2200}
-              height={1400}
-              className="project-hero__image"
-              priority
-              sizes="100vw"
-            />
-          </figure>
-        </section>
+        <ProjectHeroLightbox src={project.heroImage} alt={project.title} />
       ) : null}
 
-      <section className="project-intro">
-        <div className="project-intro__text">
-          {project.number ? <p className="section-label">{project.number}</p> : null}
-          <h1>{project.title}</h1>
-        </div>
-      </section>
+      <section className="project-header">
+        {project.number ? <p className="section-label">{project.number}</p> : null}
+        <h1>{project.title}</h1>
 
-      {metaItems.length > 0 ? (
-        <section className="project-meta" aria-label="Project metadata">
-          <p className="project-meta__line">
-            {metaItems.map((item) => (
-              <span key={item}>{item}</span>
+        {metaItems.length > 0 ? (
+          <p className="project-meta__line" aria-label="Project metadata">
+            {metaItems.map((item, index) => (
+              <span key={`${item}-${index}`}>{item}</span>
             ))}
           </p>
+        ) : null}
+      </section>
+
+      {project.body?.length ? (
+        <section className="project-body">
+          {project.body.map((paragraph, index) => (
+            <p
+              key={`${project.slug}-paragraph-${index}`}
+              dangerouslySetInnerHTML={{ __html: paragraph }}
+            />
+          ))}
         </section>
       ) : null}
-
-      <section className="project-body">
-        <div className="project-body__text">
-          {project.body?.map((paragraph, index) => (
-            <p key={`${project.slug}-paragraph-${index}`}>{paragraph}</p>
-          ))}
-        </div>
-      </section>
 
       {galleryImages.length > 0 ? <ProjectGallery images={galleryImages} /> : null}
     </article>

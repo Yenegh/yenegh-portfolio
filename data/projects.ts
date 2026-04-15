@@ -33,32 +33,33 @@ export const projects: Project[] = [
     scope: ["Research", "Drawing", "Spatial Narrative"],
     tags: ["Ecology", "Thesis", "Representation", "Speculation"],
     featured: true,
+    isPublic: true,
     cardImage: "/images/manawataki/card.jpg",
     body: [
-      "Use this project slot for one of your conceptual or thesis works. The page is already wired into the archive and homepage.",
-      "You can add more images, remove sample text, and expand the body as needed. The starter is intentionally minimal so it stays editable in VS Code.",
-      "When you are ready, duplicate the project object in data/projects.ts and change the slug, title, and images."
-    ],
+      "Manawataki is a practice-led thesis that explores how indigenous temporal knowledge can reshape the way housing is conceived in Aotearoa. Developed through a design-research process, the project asks how architecture might move beyond static, performance-driven models to engage more deeply with ecological cycles, cultural knowledge, and lived rhythms.",
+      "Grounded in the Maramataka of Te Arawa, the work positions time as a primary design driver, informing spatial organisation, patterns of occupation, and relationships between people, land, and non-human systems. It proposes a housing model that supports Mauri Ora, framing wellbeing as a holistic condition shaped by environmental, social, and cultural interdependencies.",
+      "Rather than offering a fixed solution, the project establishes a framework for living that is adaptive, relational, and regenerative. The full thesis can be accessed <a href='https://openrepository.aut.ac.nz/items/8660b541-aef5-4b5b-9214-05a168cf7664' target='_blank' rel='noopener noreferrer'>here</a>, where the project is developed in full as both argument and proposition."
+    ], //
     images: [
       {
     src: "/images/manawataki/plan-01.jpg",
-    alt: "Ground floor plan",
-    caption: "Ground floor plan."
+    alt: "Roof Plan",
+    caption: "Built form intervention."
   },
   {
     src: "/images/manawataki/detail-01.png",
-    alt: "Detail drawing one",
-    caption: "Detail study."
+    alt: "Engawa",
+    caption: "Engawa detail study."
   },
   {
     src: "/images/manawataki/plan-02.jpg",
-    alt: "Detail drawing two",
-    caption: "Drawing extract."
+    alt: "Elevations",
+    caption: "Orthographic unfolded projection"
   },
   {
     src: "/images/manawataki/Axon-01.jpg",
-    alt: "Perspective render",
-    caption: "Perspective view."
+    alt: "Aerial axonometric",
+    caption: "Site axonometric showing engawa spine, food forest, and phased residential cluster"
   }
     ]
   },
