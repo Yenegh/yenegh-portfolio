@@ -18,7 +18,31 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       {children}
 
       <footer className="site-footer">
-        <div className="site-footer__left">
+        <div className="site-footer__row site-footer__row--primary">
+          <a href="mailto:yenegh@gmail.com" className="site-footer__link">
+            Email
+          </a>
+
+          <a
+            href="https://www.instagram.com/spatial.practice?igsh=NXdvM3Fkb2gyMWNj"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="site-footer__link"
+          >
+            Instagram
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/yenegh/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="site-footer__link"
+          >
+            LinkedIn
+          </a>
+        </div>
+
+        <div className="site-footer__row site-footer__row--secondary">
           <a href="#top" className="site-footer__link site-footer__link--muted">
             ↑ Top
           </a>
@@ -31,31 +55,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
             href="/privacy"
             className="site-footer__link site-footer__link--muted"
           >
-            Privacy Policy
-          </a>
-        </div>
-
-        <div className="site-footer__right">
-          <a href="mailto:yenegh@gmail.com" className="site-footer__link">
-            Email
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/yenegh/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="site-footer__link"
-          >
-            LinkedIn
-          </a>
-
-          <a
-            href="https://www.instagram.com/spatial.practice/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="site-footer__link"
-          >
-            Instagram
+            Privacy
           </a>
         </div>
       </footer>

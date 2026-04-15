@@ -811,17 +811,16 @@ select {
   padding-bottom: 20px;
   font-size: 0.9rem;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: 12px;
 }
 
-.site-footer__left,
-.site-footer__right {
+.site-footer__row {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 16px;
-  flex-wrap: wrap;
 }
 
 .site-footer__link,
@@ -838,6 +837,16 @@ select {
 .site-footer__link--muted,
 .site-footer__text--muted {
   opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    gap: 10px;
+  }
+
+  .site-footer__row {
+    gap: 12px;
+  }
 }
 
 /* =========================================================
