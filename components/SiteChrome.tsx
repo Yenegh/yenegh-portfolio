@@ -19,18 +19,32 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
 
       <footer className="site-footer">
         <div className="site-footer__left">
-          <a href="#top">↑ Top</a>
-          <span>© 2026 Yenegh</span>
-          <a href="/privacy">Privacy Policy</a>
+          <a href="#top" className="site-footer__link site-footer__link--muted">
+            ↑ Top
+          </a>
+
+          <span className="site-footer__text site-footer__text--muted">
+            © 2026 Yenegh
+          </span>
+
+          <a
+            href="/privacy"
+            className="site-footer__link site-footer__link--muted"
+          >
+            Privacy Policy
+          </a>
         </div>
 
         <div className="site-footer__right">
-          <a href="mailto:yenegh@gmail.com">Email</a>
+          <a href="mailto:yenegh@gmail.com" className="site-footer__link">
+            Email
+          </a>
 
           <a
             href="https://www.linkedin.com/in/yenegh/"
             target="_blank"
             rel="noopener noreferrer"
+            className="site-footer__link"
           >
             LinkedIn
           </a>
@@ -39,6 +53,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
             href="https://www.instagram.com/spatial.practice/"
             target="_blank"
             rel="noopener noreferrer"
+            className="site-footer__link"
           >
             Instagram
           </a>
