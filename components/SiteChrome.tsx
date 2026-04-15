@@ -17,69 +17,28 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
 
       {children}
 
-      <footer
-        style={{
-          borderTop: "1px solid rgba(0,0,0,0.15)",
-          marginTop: "64px",
-          paddingTop: "20px",
-          paddingBottom: "20px",
-          fontSize: "0.9rem",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "16px",
-        }}
-      >
-        {/* LEFT SIDE */}
-        <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-          <a
-            href="#top"
-            style={{
-              textDecoration: "none",
-              color: "inherit",
-              opacity: 0.7,
-            }}
-          >
-            ↑ Top
-          </a>
-
-          <span style={{ opacity: 0.7 }}>© 2026 Yenegh</span>
-
-          <a
-            href="/privacy"
-            style={{
-              textDecoration: "none",
-              color: "inherit",
-              opacity: 0.7,
-            }}
-          >
-            Privacy Policy
-          </a>
+      <footer className="site-footer">
+        <div className="site-footer__left">
+          <a href="#top">↑ Top</a>
+          <span>© 2026 Yenegh</span>
+          <a href="/privacy">Privacy Policy</a>
         </div>
 
-        {/* RIGHT SIDE */}
-        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-          <a
-            href="mailto:yenegh@gmail.com"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            Email
-          </a>
+        <div className="site-footer__right">
+          <a href="mailto:yenegh@gmail.com">Email</a>
 
           <a
             href="https://www.linkedin.com/in/yenegh/"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ textDecoration: "none", color: "inherit" }}
           >
             LinkedIn
           </a>
 
           <a
-            href="https://www.instagram.com/yenegh/"
+            href="https://www.instagram.com/spatial.practice/"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ textDecoration: "none", color: "inherit" }}
           >
             Instagram
           </a>
