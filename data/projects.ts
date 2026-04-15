@@ -12,6 +12,7 @@ export type Project = {
   body: string[];
   images: { src: string; alt: string; caption: string }[];
   featured: boolean;
+  isPublic?: boolean;
   cardImage?: string;
   heroImage?: string;
 };
@@ -75,6 +76,7 @@ export const projects: Project[] = [
     scope: ["Technical Documentation", "Consultant Coordination", "Adaptive Reuse"],
     tags: ["Public Architecture", "Adaptive Reuse", "Built"],
     featured: true,
+    isPublic: false,
     cardImage: "/images/ellen-melville/card.jpg",
     body: [
       "The Ellen Melville Centre is an adaptive reuse project that reworks an existing civic building in central Auckland as a renewed public and community-focused space. The project balances retention of the existing structure with contemporary spatial, programme, and accessibility requirements.",
@@ -103,6 +105,7 @@ export const projects: Project[] = [
     scope: ["General Arrangement", "Consultant Coordination", "Documentation"],
     tags: ["Revit", "Housing", "NZ Practice", "Built Work", "Homestar 5"],
     featured: false,
+    isPublic: false,
     cardImage: "/images/panuku-housing/card.jpg",
     body: [
       "A medium-density housing development in Henderson delivering 38 townhouses in the first stage, with subsequent apartment buildings currently underway. The project prioritises environmentally responsive design, achieving a Homestar 6 rating to improve energy efficiency, thermal performance, and long-term affordability for residents.",
@@ -135,6 +138,7 @@ export const projects: Project[] = [
     scope: ["Technical Documentation", "Design Development", "Coordination"],
     tags: ["Residential", "Renovation", "Built"],
     featured: false,
+    isPublic: false,
     cardImage: "/images/devonport-renovation/card.jpg",
     body: [
       "This project involved the renovation of an existing residential dwelling in Devonport, working within the constraints of the existing structure while improving spatial organisation and liveability. The design approach focused on refining internal layouts and strengthening connections between interior spaces and the surrounding site.",
@@ -162,6 +166,7 @@ export const projects: Project[] = [
     scope: ["Technical Documentation", "Design Development", "Coordination"],
     tags: ["Residential", "Renovation", "Built"],
     featured: false,
+    isPublic: false,
     cardImage: "/images/interior-renovation/card.jpg",
     body: [
       "This project involved the renovation of an existing residential dwelling in Devonport, working within the constraints of the existing structure while improving spatial organisation and liveability. The design approach focused on refining internal layouts and strengthening connections between interior spaces and the surrounding site.",

@@ -22,10 +22,13 @@ type ProjectRecord = {
   body?: string[];
   tags?: string[];
   images?: ProjectImage[];
+  isPublic?: boolean;
 };
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return projects
+    .filter((project) => project.isPublic !== false)
+    .map((project) => ({ slug: project.slug }));
 }
 
 function buildMetaItems(project: ProjectRecord): string[] {
@@ -76,15 +79,14 @@ function buildGallery(project: ProjectRecord) {
   return [];
 }
 
-export default async function ProjectPage({
+export default function ProjectPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug) as ProjectRecord | undefined;
+  const project = getProjectBySlug(params.slug);
 
-  if (!project) {
+  if (!project || project.isPublic === false) {
     notFound();
   }
 

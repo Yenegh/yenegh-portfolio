@@ -3,7 +3,9 @@ import Image from "next/image";
 import { projects } from "@/data/projects";
 
 export default function HomePage() {
-  const featuredProjects = projects.filter((project) => project.featured);
+  const featuredProjects = projects
+  .filter((p) => p.isPublic !== false)
+  .filter((p) => p.featured);
 
   return (
     <main>

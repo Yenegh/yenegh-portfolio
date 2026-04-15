@@ -30,17 +30,34 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
           gap: "16px",
         }}
       >
-        <a
-          href="#top"
-          style={{
-            textDecoration: "none",
-            color: "inherit",
-            opacity: 0.7,
-          }}
-        >
-          ↑ Top
-        </a>
+        {/* LEFT SIDE */}
+        <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+          <a
+            href="#top"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              opacity: 0.7,
+            }}
+          >
+            ↑ Top
+          </a>
 
+          <span style={{ opacity: 0.7 }}>© 2026 Yenegh</span>
+
+          <a
+            href="/privacy"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              opacity: 0.7,
+            }}
+          >
+            Privacy Policy
+          </a>
+        </div>
+
+        {/* RIGHT SIDE */}
         <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
           <a
             href="mailto:yenegh@gmail.com"

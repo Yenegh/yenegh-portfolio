@@ -12,7 +12,9 @@ export function ProjectTable({ projects }: { projects: Project[] }) {
         <div>Year</div>
       </div>
 
-      {projects.map((project) => (
+      {projects
+      .filter((project) => project.isPublic !== false)
+      .map((project) => (
         <Link key={project.slug} href={`/projects/${project.slug}`} className="project-row">
           <div>{project.number}</div>
           <div>

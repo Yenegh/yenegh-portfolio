@@ -39,7 +39,9 @@ export function ArchiveOverview({ projects }: { projects: Project[] }) {
             <div>Year</div>
           </div>
 
-          {projects.map((project) => (
+          {projects
+          .filter((project) => project.isPublic !== false)
+          .map((project) => (
             <Link
               key={project.slug}
               href={`/projects/${project.slug}`}
@@ -75,7 +77,8 @@ export function ArchiveOverview({ projects }: { projects: Project[] }) {
 
       <section className="archive-overview-mobile">
         <div className="archive-overview-mobile__grid">
-          {projects.map((project) => (
+          {projects.filter((project) => project.isPublic !== false)
+          .map((project) => (
             <Link
               key={project.slug}
               href={`/projects/${project.slug}`}
