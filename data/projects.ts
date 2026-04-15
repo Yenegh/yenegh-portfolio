@@ -23,7 +23,7 @@ export const projects: Project[] = [
     slug: "manawataki",
     number: "01",
     title: "Manawataki",
-    year: "2025",
+    year: "2022",
     category: "Thesis",
     scale: "Architectural Research",
     status: "Research",
