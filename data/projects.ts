@@ -34,7 +34,7 @@ export const projects: Project[] = [
     tags: ["Ecology", "Thesis", "Representation", "Speculation"],
     featured: true,
     isPublic: true,
-    cardImage: "/images/manawataki/card.jpg",
+    cardImage: "/images/manawataki/card.png",
     body: [
       "Manawataki is a practice-led thesis that explores how indigenous temporal knowledge can reshape the way housing is conceived in Aotearoa. Developed through a design-research process, the project asks how architecture might move beyond static, performance-driven models to engage more deeply with ecological cycles, cultural knowledge, and lived rhythms.",
       "Grounded in the Maramataka of Te Arawa, the work positions time as a primary design driver, informing spatial organisation, patterns of occupation, and relationships between people, land, and non-human systems. It proposes a housing model that supports Mauri Ora, framing wellbeing as a holistic condition shaped by environmental, social, and cultural interdependencies.",
