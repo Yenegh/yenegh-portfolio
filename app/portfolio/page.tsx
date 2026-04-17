@@ -11,7 +11,7 @@ export default function HomePage() {
     <main>
       <section className="hero">
         <div>
-          <h1>Design-led thinking with delivery fluency.</h1>
+          <h1>Shaped by time, place, & living systems.</h1>
         </div>
         <div>
           <p className="lead">

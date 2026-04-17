@@ -144,10 +144,9 @@ export const projects: Project[] = [
     summary:
       "Rear reconfiguration of a Devonport villa, translating concept intent through resource consent, building consent, and construction documentation to create a more continuous living space.",
       scope: [
-      "Resource Consent Documentation",
-        "Building Consent Documentation",
-    "Design Development",
-     "Consultant Coordination"
+      "Resource & Building Consent Documentation",
+    "Detail Design Development",
+     "Consultant Coordination", "RFI Management"
     ],
     tags: ["Residential", "Renovation", "Built", "Consent", "Adaptive Reuse"],
     featured: true,
