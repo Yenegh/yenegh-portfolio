@@ -26,7 +26,9 @@ type ProjectRecord = {
 };
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return projects
+    .filter((project) => project.isPublic === true)
+    .map((project) => ({ slug: project.slug }));
 }
 
 function buildMetaItems(project: ProjectRecord): string[] {
@@ -54,9 +56,9 @@ export default async function ProjectPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = getProjectBySlug(slug) as ProjectRecord | undefined;
 
-  if (!project) {
+  if (!project || project.isPublic !== true) {
     notFound();
   }
 
