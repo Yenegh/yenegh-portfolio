@@ -42,26 +42,31 @@ export const projects: Project[] = [
     ], //
     images: [
       {
-    src: "/images/manawataki/plan-01.jpg",
-    alt: "Roof Plan",
-    caption: "Built form intervention."
-  },
-  {
-    src: "/images/manawataki/detail-01.png",
-    alt: "Engawa",
-    caption: "Engawa detail study."
-  },
-  {
-    src: "/images/manawataki/plan-02.jpg",
-    alt: "Elevations",
-    caption: "Orthographic unfolded projection"
-  },
-  {
-    src: "/images/manawataki/Axon-01.jpg",
-    alt: "Aerial axonometric",
-    caption: "Site axonometric showing engawa spine, food forest, and phased residential cluster"
-  }
-    ]
+        src: "/images/manawataki/diagram-01.png",
+        alt: "Temporal Driver to Spatial System diagram",
+        caption: "Temporal Driver → Spatial System. Maramataka-derived temporal amplitudes calibrate ecological mapping and establish a spatial framework for occupation."
+      },
+      {
+        src: "/images/manawataki/diagram-02.jpg",
+        alt: "Temporal phases and programme mapping",
+        caption: "Temporal phases mapped to programme. Fluctuations in intensity structure cycles of gathering, cultivation, retreat, and regeneration."
+      },
+      {
+        src: "/images/manawataki/plan-01.jpg",
+        alt: "Roof plan",
+        caption: "Plan — spatial organisation structured by temporal rhythms, with programme distributed along a continuous circulation spine."
+      },
+      {
+        src: "/images/manawataki/Axon-01.jpg",
+        alt: "Aerial axonometric",
+        caption: "Axonometric — distributed housing clusters and shared infrastructure embedded within a food-producing landscape."
+      },
+      {
+        src: "/images/manawataki/detail-01.png",
+        alt: "Engawa detail",
+        caption: "Threshold detail — elevated structure and engawa mediate occupation between interior space and ecological ground."
+      }
+]
   },
 
   {

@@ -38,16 +38,16 @@ function buildMetaItems(project: ProjectRecord): string[] {
 }
 
 function buildGallery(project: ProjectRecord) {
-  if (project.images && project.images.length > 0) {
-    return project.images.map((image, index) => ({
-      src: image.src,
-      alt: image.alt || `${project.title} image ${index + 1}`,
-      caption: image.caption || "",
-      layout: index === 1 || index === 2 ? ("half" as const) : ("full" as const),
-    }));
+  if (!project.images || project.images.length === 0) {
+    return [];
   }
 
-  return [];
+  return project.images.map((image, index) => ({
+    src: image.src,
+    alt: image.alt || `${project.title} image ${index + 1}`,
+    caption: image.caption || "",
+    layout: "full" as const,
+  }));
 }
 
 export default async function ProjectPage({
