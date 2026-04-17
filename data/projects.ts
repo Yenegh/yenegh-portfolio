@@ -5,7 +5,8 @@ export type Project = {
   year: string;
   category: string;
   scale: string;
-  status: "Built" | "Research" | "Competition" | "Concept";
+  status: "Built" | "Research" | "Competition" | "Concept" | "Ongoing";
+  award?: string;
   summary: string;
   scope: string[];
   tags: string[];
@@ -26,11 +27,12 @@ export const projects: Project[] = [
     year: "2022",
     category: "Thesis",
     scale: "Architectural Research",
-    status: "Research",
+    status: "Ongoing",
+    award: "Recipient of Dean's Award for Excellence in Postgraduate Study",
     heroImage: "/images/manawataki/hero.jpg",
     summary:
-      "A research-led project exploring architecture as ecological partner through narrative, drawing, and typological reframing.",
-    scope: ["Research", "Drawing", "Spatial Narrative"],
+      "An ongoing research project exploring architecture as ecological partner through narrative, drawing, and typological reframing.",
+    scope: ["Design Research", "Temporal Systems", "Ecological Urbanism"],
     tags: ["Ecology", "Thesis", "Representation", "Speculation"],
     featured: true,
     isPublic: true,
@@ -38,7 +40,7 @@ export const projects: Project[] = [
     body: [
       "Manawataki is a practice-led thesis that explores how indigenous temporal knowledge can reshape the way housing is conceived in Aotearoa. Developed through a design-research process, the project asks how architecture might move beyond static, performance-driven models to engage more deeply with ecological cycles, cultural knowledge, and lived rhythms.",
       "Grounded in the Maramataka of Te Arawa, the work positions time as a primary design driver, informing spatial organisation, patterns of occupation, and relationships between people, land, and non-human systems. It proposes a housing model that supports Mauri Ora, framing wellbeing as a holistic condition shaped by environmental, social, and cultural interdependencies.",
-      "Rather than offering a fixed solution, the project establishes a framework for living that is adaptive, relational, and regenerative. The full thesis can be accessed <a href='https://openrepository.aut.ac.nz/items/8660b541-aef5-4b5b-9214-05a168cf7664' target='_blank' rel='noopener noreferrer'>here</a>, where the project is developed in full as both argument and proposition."
+      "Originally developed as a 2022 thesis, the project now continues as an active line of research through ongoing writing, and future publication. Rather than offering a fixed solution, it establishes a framework for living that is adaptive, relational, and regenerative. The full thesis can be accessed <a href='https://openrepository.aut.ac.nz/items/8660b541-aef5-4b5b-9214-05a168cf7664' target='_blank' rel='noopener noreferrer'>here</a>, where the project is developed in full as both argument and proposition."
     ], //
     images: [
       {
@@ -81,7 +83,7 @@ export const projects: Project[] = [
       "The adaptive reuse of the Ellen Melville Centre repositions an existing civic building within Auckland’s city centre as a contemporary community hub.",
     scope: ["Technical Documentation", "Consultant Coordination", "Adaptive Reuse"],
     tags: ["Public Architecture", "Adaptive Reuse", "Built"],
-    featured: true,
+    featured: false,
     isPublic: false,
     cardImage: "/images/ellen-melville/card.jpg",
     body: [
@@ -134,30 +136,51 @@ export const projects: Project[] = [
   {
     slug: "devonport-residential-renovation",
     number: "04",
-    title: "Devonport Residential Renovation",
-    year: "2022",
-    category: "Heritage Renovation",
+    title: "Devonport Renovation",
+    year: "2020",
+    category: "Special Character",
     scale: "Residential",
     status: "Built",
     summary:
-      "A residential renovation project in Devonport involving the reworking of an existing dwelling to improve spatial flow, functionality, and connection to its site context.",
-    scope: ["Technical Documentation", "Design Development", "Coordination"],
-    tags: ["Residential", "Renovation", "Built"],
-    featured: false,
-    isPublic: false,
-    cardImage: "/images/devonport-renovation/card.jpg",
+      "Rear reconfiguration of a Devonport villa, translating concept intent through resource consent, building consent, and construction documentation to create a more continuous living space.",
+      scope: [
+      "Resource Consent Documentation",
+        "Building Consent Documentation",
+    "Design Development",
+     "Consultant Coordination"
+    ],
+    tags: ["Residential", "Renovation", "Built", "Consent", "Adaptive Reuse"],
+    featured: true,
+    isPublic: true,
+    cardImage: "/images/devonport-renovation/card.png",
     body: [
-      "This project involved the renovation of an existing residential dwelling in Devonport, working within the constraints of the existing structure while improving spatial organisation and liveability. The design approach focused on refining internal layouts and strengthening connections between interior spaces and the surrounding site.",
-      "My role focused on developing drawing packages and resolving design information through coordination and iterative refinement. This included producing documentation suitable for construction and working through the practical constraints associated with modifying an existing building.",
-      "The project demonstrates the ability to work at a smaller residential scale while navigating the challenges of renovation, including existing conditions, spatial limitations, and buildability. It adds a domestic and detail-focused layer to the overall portfolio."
+      "A rear reconfiguration of an existing Devonport villa, opening a fragmented ground floor into a more continuous living space.",
+      "Following initial concept work by Judy Eden of House of Eden Architecture, I developed the project through resource consent, building consent, and technical documentation. The work involved translating an early design direction into a buildable and coordinated set of architectural information.",
+      "The intervention combined selective demolition, structural insertion, service reorganisation, and new rear joinery to consolidate the living, dining, and kitchen areas into a more continuous domestic space.",
+      "This project sits at the intersection of design and delivery, showing my ability to carry architectural intent through consent, coordination, and construction within the realities of an existing building."
     ],
     images: [
-      {
-        src: "/images/devonport-renovation/01.png",
-        alt: "Devonport residential renovation view",
-        caption: "Residential renovation project in Devonport."
-      }
-    ]
+    {
+      src: "/images/devonport-renovation/01.png",
+      alt: "Completed interior view of the Devonport renovation",
+      caption: "Completed rear living space following reconfiguration of the existing villa."
+    },
+    {
+      src: "/images/devonport-renovation/02.png",
+      alt: "Existing and proposed floor plans for the Devonport renovation",
+      caption: "Existing and proposed plans showing the spatial reorganisation of the rear of the house."
+    },
+    {
+      src: "/images/devonport-renovation/03.jpg",
+      alt: "Demolition and structural transformation during construction",
+      caption: "Construction in progress, revealing the structural changes required to open the plan."
+    },
+    {
+      src: "/images/devonport-renovation/04.png",
+      alt: "Rear elevation after removal of internal partitions and chimney, enabling a more continuous living space with direct garden access.",
+      caption: "Rear elevation after removal of internal partitions and chimney, enabling a more continuous living space with direct garden access."
+    }
+  ]
   },
   {
     slug: "interior-renovation",

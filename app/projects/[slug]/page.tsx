@@ -26,13 +26,11 @@ type ProjectRecord = {
 };
 
 export function generateStaticParams() {
-  return projects
-    .filter((project) => project.isPublic !== false)
-    .map((project) => ({ slug: project.slug }));
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
 function buildMetaItems(project: ProjectRecord): string[] {
-  return [project.year, project.category, project.scale].filter(
+  return [project.year, project.category, project.scale, project.status].filter(
     (item): item is string => Boolean(item && item.trim())
   );
 }
@@ -58,7 +56,7 @@ export default async function ProjectPage({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
-  if (!project || project.isPublic === false) {
+  if (!project) {
     notFound();
   }
 
