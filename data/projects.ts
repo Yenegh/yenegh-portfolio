@@ -68,7 +68,7 @@ export const projects: Project[] = [
         alt: "Engawa detail",
         caption: "Threshold detail — elevated structure and engawa mediate occupation between interior space and ecological ground."
       }
-]
+    ]
   },
 
   {
@@ -141,6 +141,7 @@ export const projects: Project[] = [
     category: "Special Character",
     scale: "Residential",
     status: "Built",
+    heroImage: "/images/devonport-renovation/hero.jpg",
     summary:
       "Rear reconfiguration of a Devonport villa, translating concept intent through resource consent, building consent, and construction documentation to create a more continuous living space.",
       scope: [
