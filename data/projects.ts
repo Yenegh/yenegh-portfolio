@@ -161,11 +161,6 @@ export const projects: Project[] = [
     ],
     images: [
     {
-      src: "/images/devonport-renovation/01.png",
-      alt: "Completed interior view of the Devonport renovation",
-      caption: "Completed rear living space following reconfiguration of the existing villa."
-    },
-    {
       src: "/images/devonport-renovation/02.png",
       alt: "Existing and proposed floor plans for the Devonport renovation",
       caption: "Existing and proposed plans showing the spatial reorganisation of the rear of the house."
@@ -174,6 +169,11 @@ export const projects: Project[] = [
       src: "/images/devonport-renovation/03.jpg",
       alt: "Demolition and structural transformation during construction",
       caption: "Construction in progress, revealing the structural changes required to open the plan."
+    },
+    {
+      src: "/images/devonport-renovation/01.png",
+      alt: "Completed interior view of the Devonport renovation",
+      caption: "Completed rear living space following reconfiguration of the existing villa."
     },
     {
       src: "/images/devonport-renovation/04.png",
