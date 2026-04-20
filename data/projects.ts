@@ -44,14 +44,14 @@ export const projects: Project[] = [
     ], //
     images: [
       {
+        src: "/images/manawataki/diagram-02.png",
+        alt: "Temporal phases and programme mapping",
+        caption: "Temporal phases mapped to programme. Fluctuations in intensity structure cycles of gathering, cultivation, retreat, and regeneration."
+      },
+      {
         src: "/images/manawataki/diagram-01.png",
         alt: "Temporal Driver to Spatial System diagram",
         caption: "Temporal Driver → Spatial System. Maramataka-derived temporal amplitudes calibrate ecological mapping and establish a spatial framework for occupation."
-      },
-      {
-        src: "/images/manawataki/diagram-02.jpg",
-        alt: "Temporal phases and programme mapping",
-        caption: "Temporal phases mapped to programme. Fluctuations in intensity structure cycles of gathering, cultivation, retreat, and regeneration."
       },
       {
         src: "/images/manawataki/plan-01.jpg",

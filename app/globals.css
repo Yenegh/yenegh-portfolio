@@ -1041,8 +1041,55 @@ select {
   }
 }
 
+
 /* =========================================================
-   15. RESPONSIVE - TABLET
+   XX. TEMPORAL DIAGRAM (MANAWATAKI)
+   ========================================================= */
+
+.temporal-diagram {
+  position: relative;
+  width: 100%;
+}
+
+.temporal-diagram__base {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.temporal-diagram__overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.temporal-diagram .phase {
+  position: absolute;
+  width: 120px;
+  transform: translate(-50%, -100%);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.temporal-diagram .phase:hover {
+  transform: translate(-50%, -105%) scale(1.05);
+}
+
+/* positioning */
+.phase-1 { left: 5%; top: 35%; }
+.phase-2 { left: 12%; top: 35%; }
+.phase-3 { left: 12%; top: 35%; }
+.phase-4 { left: 12%; top: 35%; }
+.phase-5 { left: 12%; top: 35%; }
+.phase-6 { left: 12%; top: 35%; }
+.phase-7 { left: 12%; top: 35%; }
+.phase-8 { left: 12%; top: 35%; }
+.phase-9 { left: 12%; top: 35%; }
+.phase-10 { left: 12%; top: 35%; }
+.phase-11 { left: 12%; top: 35%; }
+.phase-12 { left: 12%; top: 35%; }
+
+/* =========================================================
+   16. RESPONSIVE - TABLET
    ========================================================= */
 
 @media (max-width: 900px) {
@@ -1175,7 +1222,7 @@ select {
 }
 
 /* =========================================================
-   16. RESPONSIVE - MOBILE
+   17. RESPONSIVE - MOBILE
    ========================================================= */
 
 @media (max-width: 768px) {

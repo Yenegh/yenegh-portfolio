@@ -5,7 +5,7 @@ import { SiteChrome } from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
   title: "YENEGH",
-  description: "Minimal architecture portfolio.",
+  description: "Portfolio of Yenegh Badimayalew, an architectural designer focused on design-led thinking, ecological systems, housing, and built work.",
 };
 
 export default function RootLayout({
