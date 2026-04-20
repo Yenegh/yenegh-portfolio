@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Portfolio of Yenegh Badimayalew, an Auckland-based architectural designer focused on design-led thinking, ecological systems, housing, and built work.",
+    "Portfolio by Yenegh Badimayalew, an architectural designer focused on design-led thinking, ecological systems, housing, and built work.",
 
   keywords: [
     "Yenegh Badimayalew",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Yenegh Badimayalew | Architectural Designer in Auckland",
     description:
-      "Portfolio of Yenegh Badimayalew, an Auckland-based architectural designer focused on design-led thinking, ecological systems, housing, and built work.",
+      "Portfolio by Yenegh Badimayalew, an architectural designer focused on design-led thinking, ecological systems, housing, and built work.",
     url: "https://yenegh.com",
     siteName: "Yenegh",
     locale: "en_NZ",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Yenegh Badimayalew | Architectural Designer in Auckland",
+    title: "Yenegh Badimayalew | Architectural Designer",
     description:
       "Portfolio of Yenegh Badimayalew, an architectural designer focused on design-led thinking, ecological systems, housing, and built work.",
   },
