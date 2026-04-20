@@ -1041,52 +1041,216 @@ select {
   }
 }
 
-
 /* =========================================================
-   XX. TEMPORAL DIAGRAM (MANAWATAKI)
+   15. TEMPORAL DIAGRAM (MANAWATAKI)
    ========================================================= */
 
 .temporal-diagram {
+  width: 100%;
+  margin: 100px 0 80px;
+}
+
+.temporal-diagram__frame {
   position: relative;
   width: 100%;
+  margin: 0;
 }
 
 .temporal-diagram__base {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
 }
 
 .temporal-diagram__overlay {
   position: absolute;
   inset: 0;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.temporal-diagram .phase {
+.temporal-diagram__phase {
   position: absolute;
-  width: 120px;
-  transform: translate(-50%, -100%);
+  z-index: 3;
+  width: 14%;
+  max-width: 160px;
+  padding: 0;
+  border: 0;
+  background: transparent;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  pointer-events: auto;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  text-align: left;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.15));
 }
 
-.temporal-diagram .phase:hover {
-  transform: translate(-50%, -105%) scale(1.05);
+.temporal-diagram__phase {
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.15));
 }
 
-/* positioning */
-.phase-1 { left: 5%; top: 35%; }
-.phase-2 { left: 12%; top: 35%; }
-.phase-3 { left: 12%; top: 35%; }
-.phase-4 { left: 12%; top: 35%; }
-.phase-5 { left: 12%; top: 35%; }
-.phase-6 { left: 12%; top: 35%; }
-.phase-7 { left: 12%; top: 35%; }
-.phase-8 { left: 12%; top: 35%; }
-.phase-9 { left: 12%; top: 35%; }
-.phase-10 { left: 12%; top: 35%; }
-.phase-11 { left: 12%; top: 35%; }
-.phase-12 { left: 12%; top: 35%; }
+.temporal-diagram__phase:hover {
+  transform: translate(-50%, -50%) scale(1.04);
+  z-index: 10;
+}
+
+.temporal-diagram__phase-label {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 0;
+  background: transparent;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6a655f;
+}
+
+/* DESKTOP POSITIONING */
+.phase-1 {
+  left: 5%;
+  top: 40%;
+}
+
+.phase-2 {
+  left: 11%;
+  top: 50%;
+}
+
+.phase-3 {
+  left: 22.5%;
+  top: 36%;
+}
+
+.phase-4 {
+  left: 30%;
+  top: 52%;
+}
+
+/* LIGHTBOX */
+.temporal-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 15, 15, 0.9);
+}
+
+.temporal-lightbox__content {
+  position: relative;
+  width: min(1100px, 100%);
+  max-height: 90vh;
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 24px;
+  padding: 24px;
+  background: #f4f4f2;
+  overflow: auto;
+}
+
+.temporal-lightbox__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #111;
+}
+
+.temporal-lightbox__image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.temporal-lightbox__image {
+  display: block;
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  background: transparent;
+  padding: 10px;
+}
+
+.temporal-lightbox__meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.temporal-lightbox__eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.temporal-lightbox__title {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  line-height: 1.1;
+  color: #111;
+}
+
+.temporal-lightbox__description {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #222;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .temporal-diagram {
+    margin: 72px 0 56px;
+  }
+
+  .temporal-diagram__frame {
+    width: 100%;
+  }
+
+  .temporal-diagram__phase {
+    position: absolute;
+    width: 22%;
+    max-width: 92px;
+    transform: translate(-50%, -50%);
+  }
+
+  .temporal-diagram__phase-label {
+    margin-top: 6px;
+    padding: 0;
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+  }
+
+  .phase-1 { left: 12%; top: 32%; }
+  .phase-2 { left: 28%; top: 42%; }
+  .phase-3 { left: 44%; top: 30%; }
+  .phase-4 { left: 60%; top: 40%; }
+
+  .temporal-lightbox__content {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 18px;
+    width: min(94vw, 100%);
+  }
+
+  .temporal-lightbox__image {
+    max-height: 52vh;
+    padding: 0;
+    background: none;
+  }
+}
 
 /* =========================================================
    16. RESPONSIVE - TABLET

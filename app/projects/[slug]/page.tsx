@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getProjectBySlug, projects } from "@/data/projects";
 import ProjectGallery from "@/components/ProjectGallery";
 import ProjectHeroLightbox from "@/components/ProjectHeroLightbox";
+import TemporalDiagram from "@/components/TemporalDiagram";
 
 type ProjectImage = {
   src: string;
@@ -94,6 +95,8 @@ export default async function ProjectPage({
           ))}
         </section>
       ) : null}
+
+      {project.slug === "manawataki" ? <TemporalDiagram /> : null}
 
       {galleryImages.length > 0 ? <ProjectGallery images={galleryImages} /> : null}
     </article>
