@@ -1,4 +1,22 @@
-const experience = [
+type ExperienceItem = {
+  role: string;
+  company: string;
+  location: string;
+  period: string;
+  description: string[];
+  projectLinks?: {
+    label: string;
+    href: string;
+  }[];
+};
+
+type EducationItem = {
+  qualification: string;
+  institution: string;
+  note: string;
+};
+
+const experience: ExperienceItem[] = [
   {
     role: "Architectural Graduate",
     company: "Oxygen Architecture",
@@ -12,28 +30,40 @@ const experience = [
       "Reviewed drawing packages prior to issue, improving consistency and reducing coordination errors.",
     ],
   },
-  {
-    role: "Design Practice & Research (Self-Directed)",
-    company: "Independent",
-    location: "New Zealand",
-    period: "Feb 2023 – Feb 2024",
-    description: [
-      "Completed Master of Architecture (Professional), First Class Honours; recipient of the Dean's Award for Excellence in Postgraduate Study.",
-      "Developed the Manawataki thesis exploring regenerative, place-based architecture through Indigenous time frameworks.",
-      "Extended practice into UX/UI design through Google UX Design certification.",
-      "Prepared re-entry into full-time architectural practice with a focus on housing delivery and documentation.",
-    ],
+ {
+  role: "Design Practice & Research (Self-Directed)",
+  company: "Independent",
+  location: "New Zealand",
+  period: "Feb 2023 – Feb 2024",
+  projectLinks: [
+    {
+      label: "Manawataki – To Be Rhythmical",
+      href: "https://futureenvironments.aut.ac.nz/work/manawataki-to-be-rhythmical?dept=Architecture",
+    },
+  ],
+  description: [
+    "Completed Master of Architecture (Professional), First Class Honours; recipient of the Dean's Award for Excellence in Postgraduate Study.",
+    "Developed the Manawataki thesis exploring regenerative, place-based architecture through Indigenous temporal frameworks.",
+    "Positioned time as a primary design driver, shaping spatial organisation, occupation patterns, and environmental relationships.",
+    "Extended practice into UX/UI design through Google UX Design certification.",
+  ],
   },
   {
-    role: "Architectural Technician & Designer (Contract)",
-    company: "KBS Design Group",
-    location: "Auckland, NZ",
-    period: "Jun 2020 – Dec 2020",
-    description: [
-      "Prepared building consent documentation for the Henderson Valley Road housing development.",
-      "Delivered Homestar assessments aligned with sustainability targets and rating requirements.",
-      "Coordinated consultant information into consent packages, maintaining drawing accuracy and supporting a smooth consent process.",
-    ],
+  role: "Architectural Technician & Designer (Contract)",
+  company: "KBS Design Group",
+  location: "Auckland, NZ",
+  period: "Jun 2020 – Dec 2020",
+  projectLinks: [
+    {
+      label: "Henderson Green (Panuku Development)",
+      href: "https://www.audo.co.nz/projects/henderson-green/",
+    },
+  ],
+  description: [
+    "Prepared building consent documentation for the Henderson Green housing development.",
+    "Delivered Homestar assessments aligned with sustainability targets and rating requirements.",
+    "Coordinated consultant information into consent packages, maintaining drawing accuracy and supporting a smooth consent process.",
+  ],
   },
   {
     role: "Architectural Technician (Contract)",
@@ -59,13 +89,19 @@ const experience = [
     ],
   },
   {
-    role: "Architectural Designer (Contract)",
+    role: "Architectural Designer",
     company: "SGA & A+W NZ",
     location: "Auckland, NZ",
     period: "Jul 2017 – Feb 2018",
+    projectLinks: [
+      {
+        label: "Motu Kaikoura",
+        href: "https://www.sgaltd.co.nz/community-commercial/motu-kaikoura",
+      },
+    ],
     description: [
-      "Participated in construction of prefabricated modules on Motu Kaikoura Island.",
-      "Worked within off-grid conditions, engaging with project logistics and module assembly.",
+      "Participated in the construction of prefabricated modules for the Motu Kaikoura community facility.",
+      "Worked within remote, off-grid conditions, engaging with logistics, assembly, and site delivery constraints.",
       "Gained hands-on experience in prefabrication and sustainable construction systems.",
     ],
   },
@@ -94,7 +130,7 @@ const experience = [
   },
 ];
 
-const education = [
+const education: EducationItem[] = [
   {
     qualification:
       "Master of Architecture – MArch (Professional), First Class Honours",
@@ -202,6 +238,22 @@ export default function CVPage() {
             </div>
 
             <div className="cv-item__content">
+              {job.projectLinks?.length ? (
+                <div className="cv-project-links">
+                  {job.projectLinks.map((project) => (
+                    <a
+                      key={project.href}
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cv-project-link"
+                    >
+                      View project: {project.label}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+
               <ul className="cv-list">
                 {job.description.map((point) => (
                   <li key={point}>{point}</li>
