@@ -909,6 +909,20 @@ select {
     text-align: left;
   }
 }
+.cv-project-links {
+  margin-bottom: 0.75rem;
+}
+
+.cv-project-link {
+  display: inline-block;
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.cv-project-link:hover {
+  opacity: 0.7;
+}
 
 /* =========================================================
    14. FOOTER
