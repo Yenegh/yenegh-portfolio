@@ -65,40 +65,51 @@ export default async function ProjectPage({
 
   const metaItems = buildMetaItems(project);
   const galleryImages = buildGallery(project);
+  const isManawataki = project.slug === "manawataki";
 
   return (
     <article className="project-page">
-      {project.heroImage ? (
+      {isManawataki ? (
+        <TemporalDiagram />
+      ) : project.heroImage ? (
         <ProjectHeroLightbox src={project.heroImage} alt={project.title} />
       ) : null}
 
-      <section className="project-header">
-        {project.number ? <p className="section-label">{project.number}</p> : null}
-        <h1>{project.title}</h1>
+      <div className="project-content">
+        <section className="project-intro">
+          {project.number ? <p className="section-label">{project.number}</p> : null}
+          <h1>{project.title}</h1>
 
-        {metaItems.length > 0 ? (
-          <p className="project-meta__line" aria-label="Project metadata">
-            {metaItems.map((item, index) => (
-              <span key={`${item}-${index}`}>{item}</span>
-            ))}
-          </p>
-        ) : null}
-      </section>
+          {metaItems.length > 0 ? (
+            <p className="project-meta__line" aria-label="Project metadata">
+              {metaItems.map((item, index) => (
+                <span key={`${item}-${index}`}>{item}</span>
+              ))}
+            </p>
+          ) : null}
 
-      {project.body?.length ? (
-        <section className="project-body">
-          {project.body.map((paragraph, index) => (
-            <p
-              key={`${project.slug}-paragraph-${index}`}
-              dangerouslySetInnerHTML={{ __html: paragraph }}
-            />
-          ))}
+        
         </section>
-      ) : null}
 
-      {project.slug === "manawataki" ? <TemporalDiagram /> : null}
+        {project.body?.length ? (
+          <section className="project-body">
+            {project.body.map((paragraph, index) => (
+              <p
+                key={`${project.slug}-paragraph-${index}`}
+                dangerouslySetInnerHTML={{ __html: paragraph }}
+              />
+            ))}
+          </section>
+        ) : null}
+      </div>
 
       {galleryImages.length > 0 ? <ProjectGallery images={galleryImages} /> : null}
+
+      {isManawataki && project.heroImage ? (
+        <section className="project-ending-hero">
+          <ProjectHeroLightbox src={project.heroImage} alt={project.title} />
+        </section>
+      ) : null}
     </article>
   );
 }

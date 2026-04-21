@@ -551,7 +551,7 @@ select {
 }
 
 .project-intro__text {
-  max-width: 72ch;
+  max-width: 90ch;
 }
 
 .project-intro h1 {
@@ -564,7 +564,7 @@ select {
 }
 
 .project-intro .lead {
-  margin: 0;
+  margin: 12px 0 0;
   max-width: 42ch;
   font-size: 15px;
   line-height: 1.5;
@@ -592,10 +592,6 @@ select {
 
 .project-meta__line span:last-child::after {
   content: "";
-}
-
-.project-intro__text {
-  max-width: 90ch;
 }
 
 .project-body {
@@ -627,6 +623,26 @@ select {
 .project-body a:hover {
   border-bottom: 1px solid currentColor;
   opacity: 0.7;
+}
+
+.project-ending-hero {
+  margin-top: 120px;
+}
+
+@media (max-width: 900px) {
+  .project-ending-hero {
+    margin-top: 72px;
+  }
+}
+
+.project-ending-hero {
+  margin-top: 120px;
+}
+
+@media (max-width: 900px) {
+  .project-ending-hero {
+    margin-top: 72px;
+  }
 }
 
 /* =========================================================
@@ -1072,8 +1088,6 @@ select {
 .temporal-diagram__phase {
   position: absolute;
   z-index: 3;
-  width: 14%;
-  max-width: 160px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -1085,48 +1099,120 @@ select {
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.15));
 }
 
-.temporal-diagram__phase {
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.15));
+.temporal-diagram__phase:hover {
+  transform: translate(-50%, -50%) scale(1.03);
+  z-index: 20;
 }
 
-.temporal-diagram__phase:hover {
-  transform: translate(-50%, -50%) scale(1.04);
-  z-index: 10;
+.temporal-diagram__phase img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.temporal-diagram__phase--primary {
+  width: 15.5%;
+  max-width: 185px;
+}
+
+.temporal-diagram__phase--secondary {
+  width: 8.5%;
+  max-width: 95px;
+  opacity: 0.88;
+}
+
+/* ENERGY SCALING */
+
+/* Low — quiet */
+.temporal-diagram__phase--low.temporal-diagram__phase--primary {
+  width: 12%;
+}
+
+/* Waning — slightly restrained */
+.temporal-diagram__phase--waning.temporal-diagram__phase--primary {
+  width: 14%;
+}
+
+/* Passive — unstable but present */
+.temporal-diagram__phase--passive.temporal-diagram__phase--primary {
+  width: 15%;
+}
+
+/* Moderate — stable */
+.temporal-diagram__phase--moderate.temporal-diagram__phase--primary {
+  width: 16%;
+}
+
+/* Productive — stronger */
+.temporal-diagram__phase--productive.temporal-diagram__phase--primary {
+  width: 18%;
+}
+
+/* High — dominant */
+.temporal-diagram__phase--high.temporal-diagram__phase--primary {
+  width: 21%;
+}
+
+/* PEAK OVERRIDE */
+.phase-10 {
+  width: 24% !important;
+  z-index: 20;
+}
+
+.temporal-diagram__phase--secondary {
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0.7;
 }
 
 .temporal-diagram__phase-label {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 8px;
   padding: 0;
   background: transparent;
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #6a655f;
 }
 
+.temporal-diagram__phase-label--primary {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  opacity: 1;
+}
+
+.temporal-diagram__phase-label--secondary {
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
 /* DESKTOP POSITIONING */
-.phase-1 {
-  left: 5%;
-  top: 40%;
-}
 
-.phase-2 {
-  left: 11%;
-  top: 50%;
-}
+/* Low */
+.phase-1 { left: 18%;  top: 55%; z-index: 6; }   /* Whirowhiti */
+.phase-2 { left: 10%;  top: 70%; z-index: 5; }   /* Mutuwhenua */
 
-.phase-3 {
-  left: 22.5%;
-  top: 36%;
-}
+/* Waning */
+.phase-3 { left: 29%; top: 40%; z-index: 7; }   /* Māure */
+.phase-4 { left: 32%; top: 60%; z-index: 6; }   /* Ōmutu */
 
-.phase-4 {
-  left: 30%;
-  top: 52%;
-}
+/* Passive */
+.phase-5 { left: 43%; top: 32%; z-index: 8; }   /* Korekore-te-Ngangana*/
+.phase-6 { left: 48%; top: 55%; z-index: 7; }   /* Atuahaehae*/
+
+/* Moderate */
+.phase-7 { left: 58.5%; top: 48%; z-index: 10; }  /* Ō Uenuku */
+.phase-8 { left: 60%; top: 68%; z-index: 9; }   /* Tamateatūātahi*/
+
+/* Productive */
+.phase-9  { left: 70%; top: 30%; z-index: 12; } /* Tangaroa-ā-kiokio */
+.phase-10 { left: 75%; top: 55%; z-index: 11; } /* Rākaunui */
+
+/* High */
+.phase-11 { left: 85%; top: 25%; z-index: 14; } /* Ōrongonui */
+.phase-12 { left: 92%; top: 50%; z-index: 13; } /* "Māwharu */
 
 /* LIGHTBOX */
+
 .temporal-lightbox {
   position: fixed;
   inset: 0;
@@ -1210,33 +1296,52 @@ select {
 }
 
 /* MOBILE */
+
 @media (max-width: 900px) {
   .temporal-diagram {
     margin: 72px 0 56px;
   }
 
-  .temporal-diagram__frame {
-    width: 100%;
+  .temporal-diagram__phase--primary {
+    width: 16%;
+    max-width: 92px;
   }
 
-  .temporal-diagram__phase {
-    position: absolute;
-    width: 22%;
-    max-width: 92px;
-    transform: translate(-50%, -50%);
+  .temporal-diagram__phase--secondary {
+    width: 9%;
+    max-width: 52px;
   }
 
   .temporal-diagram__phase-label {
     margin-top: 6px;
-    padding: 0;
-    font-size: 0.55rem;
+  }
+
+  .temporal-diagram__phase-label--primary {
+    font-size: 0.48rem;
     letter-spacing: 0.08em;
   }
 
-  .phase-1 { left: 12%; top: 32%; }
-  .phase-2 { left: 28%; top: 42%; }
-  .phase-3 { left: 44%; top: 30%; }
-  .phase-4 { left: 60%; top: 40%; }
+  .temporal-diagram__phase-label--secondary {
+    display: none;
+  }
+
+  .phase-1 { left: 7%; top: 39%; }
+  .phase-2 { left: 11%; top: 43%; }
+
+  .phase-3 { left: 18%; top: 47%; }
+  .phase-4 { left: 22%; top: 43%; }
+
+  .phase-5 { left: 30%; top: 44%; }
+  .phase-6 { left: 34%; top: 40%; }
+
+  .phase-7 { left: 44%; top: 36%; }
+  .phase-8 { left: 48%; top: 40%; }
+
+  .phase-9 { left: 59%; top: 32%; }
+  .phase-10 { left: 63%; top: 36%; }
+
+  .phase-11 { left: 76%; top: 28%; }
+  .phase-12 { left: 80%; top: 33%; }
 
   .temporal-lightbox__content {
     grid-template-columns: 1fr;

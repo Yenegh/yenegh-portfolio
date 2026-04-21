@@ -5,7 +5,7 @@ export type Project = {
   year: string;
   category: string;
   scale: string;
-  status: "Built" | "Research" | "Competition" | "Concept" | "Ongoing";
+  status: "Built" | "Research" | "Competition" | "Concept" | "Completed Thesis / Ongoing Research";
   award?: string;
   summary: string;
   scope: string[];
@@ -27,21 +27,21 @@ export const projects: Project[] = [
     year: "2022",
     category: "Thesis",
     scale: "Architectural Research",
-    status: "Ongoing",
+    status: "Completed Thesis / Ongoing Research",
     award: "Recipient of Dean's Award for Excellence in Postgraduate Study",
     heroImage: "/images/manawataki/hero.jpg",
     summary:
-      "An ongoing research project exploring architecture as ecological partner through narrative, drawing, and typological reframing.",
-    scope: ["Design Research", "Temporal Systems", "Ecological Urbanism"],
+      "A design-research thesis exploring how the Maramataka can reframe housing as a temporal, ecological, and relational architecture in Aotearoa.",
+    scope: ["Design Research", "Temporal Systems", "Maramataka", "Ecological Urbanism", "Housing Typologies"],
     tags: ["Ecology", "Thesis", "Representation", "Speculation"],
     featured: true,
     isPublic: true,
     cardImage: "/images/manawataki/card.png",
     body: [
       "Manawataki is a practice-led thesis that explores how indigenous temporal knowledge can reshape the way housing is conceived in Aotearoa. Developed through a design-research process, the project asks how architecture might move beyond static, performance-driven models to engage more deeply with ecological cycles, cultural knowledge, and lived rhythms.",
-      "Grounded in the Maramataka of Te Arawa, the work positions time as a primary design driver, informing spatial organisation, patterns of occupation, and relationships between people, land, and non-human systems. It proposes a housing model that supports Mauri Ora, framing wellbeing as a holistic condition shaped by environmental, social, and cultural interdependencies.",
-      "Originally developed as a 2022 thesis, the project now continues as an active line of research through ongoing writing, and future publication. Rather than offering a fixed solution, it establishes a framework for living that is adaptive, relational, and regenerative. The full thesis can be accessed <a href='https://openrepository.aut.ac.nz/items/8660b541-aef5-4b5b-9214-05a168cf7664' target='_blank' rel='noopener noreferrer'>here</a>, where the project is developed in full as both argument and proposition."
-    ], //
+      "Grounded in the Maramataka of Te Arawa, developed by Ngā Pātaka Kōrero o Te Arawa, the work positions time as a primary design driver, informing spatial organisation, patterns of occupation, and relationships between people, land, and non-human systems. The full calendar and its wider knowledge framework can be accessed at <a href='https://ngapatakakorerootearawa.org/' target='_blank' rel='noopener noreferrer'>this source</a>.",
+      "Originally developed as a 2022 thesis, the project now continues as an active line of research through ongoing writing and future publication. Rather than offering a fixed solution, it establishes a framework for living that is adaptive, relational, and regenerative. The full thesis can be accessed <a href='https://openrepository.aut.ac.nz/items/8660b541-aef5-4b5b-9214-05a168cf7664' target='_blank' rel='noopener noreferrer'>here</a>, where the project is developed in full as both argument and proposition."
+    ], 
     images: [
       {
         src: "/images/manawataki/diagram-01.png",
