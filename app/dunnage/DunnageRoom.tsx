@@ -328,6 +328,8 @@ export default function DunnageRoom() {
   const [openNugget, setOpenNugget] = useState<string|null>(null);
   const [quiz, setQuiz] = useState<QuizState|null>(null);
   const [, forceUpdate] = useState(0);
+  const [activeBubble, setActiveBubble] = useState<string|null>(null);
+  const [quizActive, setQuizActive] = useState(false);
   const startTime = useRef(Date.now());
 
   useEffect(() => { setPositions(generatePositions(NUGGETS.length)); }, []);
@@ -388,13 +390,11 @@ export default function DunnageRoom() {
         .filter-btn{padding:5px 14px;border-radius:20px;border:none;background:transparent;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;color:#3a3a3a;cursor:pointer;transition:all .2s;white-space:nowrap;}
         .filter-btn.active{background:#1a1a1a;color:#c8b89a;}
         .filter-btn:hover:not(.active){color:#666;}
-        .bubble{position:absolute;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;border:.5px solid;transition:opacity .4s;user-select:none;}
-        .bubble:hover{filter:brightness(1.15);}
-        .bubble-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;font-weight:500;text-align:center;line-height:1;}
-        .bubble-title{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.05em;text-align:center;line-height:1.2;padding:0 8px;opacity:.7;}
-        .quiz-bubble{position:fixed;bottom:72px;right:32px;z-index:100;width:80px;height:80px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;border:.5px solid #4a1a1a;background:radial-gradient(circle at 35% 35%,#8b000018,#8b000008);transition:all .25s;user-select:none;}
-        .quiz-bubble:hover{border-color:#8b000050;box-shadow:0 0 32px #8b000020;}
-        .quiz-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;font-weight:500;color:#8b3a3a;}
+        .bubble{position:absolute;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;border:.5px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);transition:background .3s ease,border-color .3s ease,box-shadow .3s ease;user-select:none;}
+        .bubble-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;font-weight:500;text-align:center;line-height:1;color:rgba(255,255,255,0.25);transition:color .3s ease;}
+        .bubble-title{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.05em;text-align:center;line-height:1.2;padding:0 8px;color:rgba(255,255,255,0.15);transition:color .3s ease;}
+        .quiz-bubble{position:fixed;bottom:72px;right:32px;z-index:100;width:80px;height:80px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;border:.5px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.03);transition:background .3s ease,border-color .3s ease,box-shadow .3s ease;user-select:none;}
+        .quiz-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;font-weight:500;color:rgba(255,255,255,0.25);transition:color .3s ease;}
         .overlay{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;}
         .overlay-bg{position:absolute;inset:0;background:rgba(5,5,5,.94);backdrop-filter:blur(16px);cursor:pointer;}
         .overlay-card{position:relative;z-index:1;background:#0d0d0d;border:.5px solid #1e1e1e;border-radius:12px;max-width:560px;width:100%;max-height:82vh;overflow-y:auto;padding:32px;scrollbar-width:thin;scrollbar-color:#1a1a1a transparent;}
@@ -442,32 +442,45 @@ export default function DunnageRoom() {
           const floatX = Math.sin(t / pos.duration * Math.PI * 2) * pos.dx * 12;
           const floatY = Math.cos(t / pos.duration * Math.PI * 2) * pos.dy * 12;
 
+          const isActive = activeBubble === nugget.id;
           return (
             <div
               key={nugget.id}
               className="bubble"
+              onMouseEnter={() => !isFiltered && setActiveBubble(nugget.id)}
+              onMouseLeave={() => setActiveBubble(null)}
+              onTouchStart={() => !isFiltered && setActiveBubble(nugget.id)}
+              onTouchEnd={() => setActiveBubble(null)}
               onClick={() => !isFiltered && setOpenNugget(nugget.id)}
               style={{
                 left:`${pos.x}%`, top:`${pos.y}%`,
                 width:size, height:size,
                 transform:`translate(-50%,-50%) translate(${floatX}px,${floatY}px)`,
-                background:`radial-gradient(circle at 35% 35%,${nugget.color}18,${nugget.color}06)`,
-                borderColor: isFiltered ? '#111' : `${nugget.color}30`,
-                opacity: isFiltered ? 0.06 : 1,
-                boxShadow: isFiltered ? 'none' : `0 0 ${size*.4}px ${nugget.color}08`,
+                background: isFiltered ? undefined : isActive ? `radial-gradient(circle at 35% 35%,${nugget.color}18,${nugget.color}06)` : undefined,
+                borderColor: isFiltered ? '#111' : isActive ? `${nugget.color}30` : undefined,
+                opacity: isFiltered ? 0.04 : 1,
+                boxShadow: isActive && !isFiltered ? `0 0 ${size*.4}px ${nugget.color}08` : 'none',
                 pointerEvents: isFiltered ? 'none' : 'auto',
               }}
             >
-              <span className="bubble-label" style={{color:nugget.color}}>{nugget.label}</span>
-              <span className="bubble-title" style={{color:`${nugget.color}99`}}>{nugget.title}</span>
+              <span className="bubble-label" style={isActive && !isFiltered ? {color:nugget.color} : undefined}>{nugget.label}</span>
+              <span className="bubble-title" style={isActive && !isFiltered ? {color:`${nugget.color}99`} : undefined}>{nugget.title}</span>
             </div>
           );
         })}
 
         {/* Quiz bubble — fixed, always visible */}
-        <div className="quiz-bubble" onClick={() => setQuiz(freshQuiz())}>
-          <span className="quiz-label">test</span>
-          <span style={{fontSize:'9px',color:'#4a1a1a',letterSpacing:'.06em',fontFamily:'DM Mono,monospace'}}>yourself</span>
+        <div
+          className="quiz-bubble"
+          onMouseEnter={() => setQuizActive(true)}
+          onMouseLeave={() => setQuizActive(false)}
+          onTouchStart={() => setQuizActive(true)}
+          onTouchEnd={() => setQuizActive(false)}
+          onClick={() => setQuiz(freshQuiz())}
+          style={quizActive ? {borderColor:'#8b000050',background:'radial-gradient(circle at 35% 35%,#8b000018,#8b000008)',boxShadow:'0 0 32px #8b000020'} : undefined}
+        >
+          <span className="quiz-label" style={quizActive ? {color:'#8b3a3a'} : undefined}>test</span>
+          <span style={{fontSize:'9px',color:quizActive?'#4a1a1a':'rgba(255,255,255,0.2)',letterSpacing:'.06em',fontFamily:'DM Mono,monospace',transition:'color .3s'}}>yourself</span>
         </div>
 
         {/* Filter bar */}
