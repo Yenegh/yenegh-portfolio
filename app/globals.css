@@ -171,25 +171,27 @@ select {
   position: fixed;
   inset: 0;
   z-index: 500;
-  background: var(--bg);
+  background: rgba(248, 248, 246, 0.98);
+  padding: 64px 0 0 48px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .nav-overlay__nav {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 36px;
+  align-items: flex-start;
+  gap: 28px;
 }
 
 .nav-overlay__nav a {
-  font-size: 32px;
-  font-weight: 400;
-  color: var(--fg);
+  font-size: 14px;
+  font-weight: 300;
+  color: #222;
   text-decoration: none;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   transition: opacity 0.2s ease;
 }
 
@@ -1761,6 +1763,10 @@ select {
     gap: 12px;
     padding: 18px 0 24px;
     margin-bottom: 20px;
+  }
+
+  .nav-overlay {
+    padding-left: 24px;
   }
 
   .hero {
