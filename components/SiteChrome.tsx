@@ -6,8 +6,9 @@ import { Header } from "@/components/Header";
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isLandingPage = pathname === "/";
+  const isBarePage = isLandingPage || pathname === "/dunnage";
 
-  if (isLandingPage) {
+  if (isBarePage) {
     return <>{children}</>;
   }
 
@@ -59,6 +60,15 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
               className="site-footer__link site-footer__link--muted"
             >
               Privacy
+            </a>
+          </div>
+
+          <div className="site-footer__group">
+            <a
+              href="/dunnage"
+              className="site-footer__link site-footer__link--muted"
+            >
+              dunnage
             </a>
           </div>
         </div>

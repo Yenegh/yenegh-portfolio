@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
-import { SiteChrome } from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yenegh.com"),
@@ -70,7 +69,7 @@ export default function RootLayout({
           `}
         </Script>
 
-        <SiteChrome>{children}</SiteChrome>
+        {children}
       </body>
     </html>
   );

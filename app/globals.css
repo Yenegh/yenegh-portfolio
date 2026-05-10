@@ -394,100 +394,56 @@ select {
 
 
 /* =====================================================
-   HOME PAGE: PROJECT CARDS
-   The two-column grid of featured project cards.
-   Each card has text in front and a background image
-   that starts faded and greyscale, becoming vivid on hover.
+   PORTFOLIO PAGE: GALLERY WALL
+   Image-only grid. Greyed and desaturated by default;
+   full colour on hover with caption appearing below.
    ===================================================== */
 
-.card-grid {
+.gallery-wall {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  gap: 16px;
+  padding: 48px 48px 80px;
+  margin-top: 48px;
 }
 
-.card-grid--atmospheric {
-  gap: 20px;
-}
-
-.project-card {
-  position: relative;
+.gallery-wall__item {
   display: block;
-  min-height: 260px;
-  padding: 20px;
-  border: 1px solid var(--line);
-  color: inherit;
   text-decoration: none;
+  color: inherit;
+}
+
+.gallery-wall__image-wrap {
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.08);
-  transition: border-color 0.25s ease, background-color 0.25s ease;
+  height: 480px;
 }
 
-.project-card--image {
-  cursor: pointer;
+.gallery-wall__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  filter: grayscale(100%);
+  transition: opacity 0.4s ease, filter 0.4s ease;
 }
 
-/* The image container sits behind the text (z-index 0) */
-.project-card__media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-/* Faded and greyscale by default; full colour on hover */
-.project-card__media img {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  width: 64%;
-  height: auto;
-  object-fit: contain;
-  opacity: 0.5;
-  filter: grayscale(90%) contrast(1.1) brightness(1);
-  transition: opacity 0.28s ease;
-}
-
-.project-card:hover .project-card__media img {
+.gallery-wall__item:hover .gallery-wall__image {
   opacity: 1;
+  filter: grayscale(0%);
 }
 
-/* The text content sits above the image (z-index 1) */
-.project-card__content {
-  position: relative;
-  z-index: 1;
-  min-height: 216px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.gallery-wall__caption {
+  margin: 8px 0 24px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.project-card__content h3 {
-  margin: 0 0 8px;
-  font-size: 16px;
-  line-height: 1.3;
-  font-weight: 600;
-}
-
-.project-card__content p {
-  margin: 0;
-  max-width: 32ch;
-  font-size: 13px;
-  line-height: 1.4;
-  color: #444;
-}
-
-.project-card__meta {
-  margin-top: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.project-card:hover {
-  border-color: rgba(0, 0, 0, 0.08);
-  background: rgba(255, 255, 255, 0.12);
+.gallery-wall__item:hover .gallery-wall__caption {
+  opacity: 1;
 }
 
 
@@ -1758,10 +1714,7 @@ select {
     text-align: left;
   }
 
-  /* Home page cards go single column */
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
+  /* Portfolio gallery: keep 2 columns on tablet */
 
   /* Desktop table hidden; mobile card list shown */
   .project-table--desktop {
@@ -1987,42 +1940,21 @@ select {
     display: block;
   }
 
-  /* Cards go single column */
-  .card-grid {
+  /* Portfolio gallery: single column, contained padding on mobile */
+  .gallery-wall {
     grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 32px 24px 48px;
+    margin-top: 32px;
   }
 
-  /* Project cards are slightly shorter and hide the summary text */
-  .project-card {
-    min-height: 220px;
-    padding: 18px;
+  .gallery-wall__image-wrap {
+    height: 300px;
   }
 
-  .project-card__media img {
-    width: 54%;
-    right: 8px;
-    bottom: 8px;
-    opacity: 0.45;
-    filter: grayscale(75%) contrast(1.05);
-    transform: scale(0.98);
-  }
-
-  .project-card:hover .project-card__media img {
+  .gallery-wall__caption {
     opacity: 1;
-  }
-
-  /* Summary text hidden on mobile to keep cards compact */
-  .project-card__content p {
-    display: none;
-  }
-
-  .project-card__content {
-    min-height: auto;
-  }
-
-  .project-card__content h3 {
-    font-size: 15px;
-    font-weight: 600;
+    margin-bottom: 16px;
   }
 
   /* Project page spacing tightens on mobile */
