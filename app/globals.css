@@ -68,8 +68,10 @@ select {
    ===================================================== */
 
 .site-shell {
-  width: min(var(--max), calc(100vw - 32px));
+  max-width: var(--max);
+  width: 100%;
   margin: 0 auto;
+  padding: 0 48px;
 }
 
 /* Subtle fade-in animation applied when a new page loads */
@@ -382,14 +384,13 @@ select {
   margin-bottom: 12px;
 }
 
-/* Large display heading — scales fluidly between 30px and 64px */
 .hero h1,
 .page-title {
-  margin: 0 0 12px;
-  font-size: clamp(30px, 4vw, 64px);
+  margin: 0 0 16px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 0.98;
+  letter-spacing: 0;
+  line-height: 1.4;
 }
 
 
@@ -403,8 +404,7 @@ select {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
-  padding: 48px 48px 80px;
-  margin-top: 48px;
+  padding: 32px 0 80px;
 }
 
 .gallery-wall__item {
@@ -677,8 +677,8 @@ select {
    ===================================================== */
 
 .project-page {
-  border-top: 1px solid var(--line);
-  padding-top: 40px;
+  padding-top: 32px;
+  padding-bottom: 80px;
 }
 
 .project-hero {
@@ -687,7 +687,6 @@ select {
 
 .project-hero__figure {
   margin: 0;
-  background: #ecece8;
 }
 
 /* Zoom cursor signals the hero image can be opened in the lightbox */
@@ -710,22 +709,20 @@ select {
   max-width: 90ch;
 }
 
-/* Project title — scales fluidly between 30px and 56px */
 .project-intro h1 {
   margin: 0 0 12px;
-  font-size: clamp(30px, 4vw, 56px);
-  line-height: 0.98;
-  letter-spacing: -0.03em;
-  font-weight: 400;
-  max-width: 16ch;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0;
+  font-weight: 500;
 }
 
 .project-intro .lead {
   margin: 12px 0 0;
-  max-width: 42ch;
-  font-size: 15px;
-  line-height: 1.5;
-  color: #3f3f3f;
+  max-width: 56ch;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
 }
 
 .project-meta {
@@ -966,9 +963,7 @@ select {
    ===================================================== */
 
 .cv-page {
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 24px 0 72px;
+  padding: 32px 0 80px;
 }
 
 .cv-header {
@@ -984,8 +979,12 @@ select {
 
 .cv-section h2 {
   margin: 0 0 16px;
-  font-size: 18px;
-  line-height: 1.2;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.4;
 }
 
 .cv-section p {
@@ -1001,25 +1000,27 @@ select {
 .cv-contact {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem 1.25rem;
+  gap: 0.4rem 1.25rem;
   margin-bottom: 1rem;
-  font-size: 0.95rem;
+  font-size: 12px;
+  color: var(--muted);
 }
 
 /* "Download PDF" button — inverts to white-on-black on hover */
 .cv-download {
   display: inline-block;
-  margin-top: 24px;
-  padding: 10px 16px;
-  border: 1px solid var(--line);
+  margin-top: 20px;
+  font-size: 12px;
+  color: var(--muted);
   text-decoration: none;
-  font-size: 14px;
-  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1px;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .cv-download:hover {
-  background: #000;
-  color: #fff;
+  color: var(--fg);
+  border-color: currentColor;
 }
 
 /* Pill-shaped skill and software tags */
@@ -1031,11 +1032,9 @@ select {
 
 .cv-tag {
   display: inline-block;
-  padding: 0.35rem 0.65rem;
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  line-height: 1.2;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
 }
 
 .cv-item {
@@ -1100,10 +1099,6 @@ select {
 
 /* CV on tablet and mobile — columns collapse to a single stack */
 @media (max-width: 900px) {
-  .cv-page {
-    padding: 24px 0 56px;
-  }
-
   .cv-item--experience,
   .cv-item--education {
     grid-template-columns: 1fr;
@@ -1840,9 +1835,9 @@ select {
    ===================================================== */
 
 @media (max-width: 768px) {
-  /* Side padding narrows from 32px to 24px on phones */
+  /* Side padding narrows to 24px on phones */
   .site-shell {
-    width: min(var(--max), calc(100vw - 24px));
+    padding: 0 24px;
   }
 
   .site-header {
@@ -1940,12 +1935,11 @@ select {
     display: block;
   }
 
-  /* Portfolio gallery: single column, contained padding on mobile */
+  /* Portfolio gallery: single column on mobile */
   .gallery-wall {
     grid-template-columns: 1fr;
     gap: 12px;
-    padding: 32px 24px 48px;
-    margin-top: 32px;
+    padding: 16px 0 48px;
   }
 
   .gallery-wall__image-wrap {
@@ -1976,13 +1970,10 @@ select {
 
   .project-intro h1 {
     margin-bottom: 10px;
-    max-width: 100%;
-    font-size: clamp(28px, 9vw, 40px);
   }
 
   .project-intro .lead {
     max-width: 100%;
-    font-size: 14px;
   }
 
   .project-meta {
