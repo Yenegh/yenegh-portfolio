@@ -383,7 +383,7 @@ export default function DunnageRoom() {
         .grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:120px;}
         .back-link{position:fixed;top:20px;left:24px;z-index:100;font-family:'DM Mono',monospace;font-size:11px;color:#3a3a3a;text-decoration:none;letter-spacing:.08em;transition:color .2s;}
         .back-link:hover{color:#666;}
-        .room-title{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:100;font-family:'DM Serif Display',serif;font-size:13px;color:#2a2a2a;letter-spacing:.2em;text-transform:uppercase;pointer-events:none;}
+        @media(max-width:768px){.back-link-text{display:none;}}
         .filters{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100;display:flex;gap:6px;background:rgba(15,15,15,.9);border:.5px solid #1a1a1a;border-radius:30px;padding:6px 10px;backdrop-filter:blur(8px);}
         .filter-btn{padding:5px 14px;border-radius:20px;border:none;background:transparent;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;color:#3a3a3a;cursor:pointer;transition:all .2s;white-space:nowrap;}
         .filter-btn.active{background:#1a1a1a;color:#c8b89a;}
@@ -431,8 +431,7 @@ export default function DunnageRoom() {
 
       <div className="room">
         <div className="grain"/>
-        <Link href="/" className="back-link">← yenegh.com</Link>
-        <div className="room-title">dunnage</div>
+        <Link href="/" className="back-link">←<span className="back-link-text"> yenegh.com</span></Link>
 
         {/* Floating nugget bubbles */}
         {positions.length === NUGGETS.length && NUGGETS.map((nugget, i) => {
