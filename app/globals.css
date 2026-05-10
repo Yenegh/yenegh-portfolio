@@ -126,8 +126,14 @@ select {
 
 
 /* =====================================================
-   HAMBURGER & FULL-SCREEN NAV OVERLAY
+   HAMBURGER & INLINE DROPDOWN NAV
    ===================================================== */
+
+.nav-container {
+  position: relative;
+  justify-self: end;
+  align-self: center;
+}
 
 .hamburger {
   display: flex;
@@ -135,68 +141,56 @@ select {
   align-items: center;
   justify-content: center;
   gap: 4px;
-  justify-self: end;
-  align-self: center;
   width: 40px;
   height: 40px;
   padding: 0;
   border: none;
   background: transparent;
   cursor: pointer;
-  position: relative;
-  z-index: 600;
 }
 
 .hamburger span {
   display: block;
-  width: 18px;
+  width: 16px;
   height: 1px;
   background: #222;
-  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-.hamburger[aria-expanded="true"] span:nth-child(1) {
-  transform: translateY(5px) rotate(45deg);
-}
-
-.hamburger[aria-expanded="true"] span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger[aria-expanded="true"] span:nth-child(3) {
-  transform: translateY(-5px) rotate(-45deg);
-}
-
-.nav-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 500;
-  background: rgba(248, 248, 246, 0.98);
-  padding: 64px 0 0 48px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.nav-overlay__nav {
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 200;
+  background: #f8f8f6;
+  border: 0.5px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 8px 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 28px;
+  min-width: 120px;
+  animation: dropdownFadeIn 0.15s ease;
 }
 
-.nav-overlay__nav a {
-  font-size: 14px;
+@keyframes dropdownFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 8px 20px;
+  font-size: 12px;
   font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: #222;
   text-decoration: none;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
 }
 
-.nav-overlay__nav a:hover {
-  opacity: 0.4;
+.nav-dropdown a:hover {
+  opacity: 0.5;
 }
 
 
@@ -1765,9 +1759,6 @@ select {
     margin-bottom: 20px;
   }
 
-  .nav-overlay {
-    padding-left: 24px;
-  }
 
   .hero {
     grid-template-columns: 1fr;
