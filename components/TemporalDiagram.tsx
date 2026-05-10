@@ -194,7 +194,7 @@ export default function TemporalDiagram() {
       <section className="temporal-diagram" aria-label="Temporal phases diagram">
         <div className="temporal-diagram__frame">
           <img
-            src="/images/manawataki/temporal-base.svg"
+            src="/images/manawataki/temporal-base.png"
             alt="Maramataka temporal diagram with spatial energy amplitudes"
             className="temporal-diagram__base"
           />

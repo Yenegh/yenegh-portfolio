@@ -1,15 +1,24 @@
-/* =========================================================
-   01. ROOT / GLOBAL
-   ========================================================= */
+/* =====================================================
+   DESIGN TOKENS
+   The core colours and size limits used everywhere.
+   Change a value here and it updates across the whole site.
+   ===================================================== */
 
 :root {
-  --bg: #efeee8;
-  --fg: #1e1e1e;
-  --muted: #737373;
-  --line: #e2e0d8;
-  --line-strong: #d7d4cb;
-  --max: 1440px;
+  --bg: #efeee8;          /* page background — a warm off-white */
+  --fg: #1e1e1e;          /* main text colour — near-black */
+  --muted: #737373;       /* secondary text — labels, captions, metadata */
+  --line: #e2e0d8;        /* subtle border and divider colour */
+  --line-strong: #d7d4cb; /* slightly stronger border, used sparingly */
+  --max: 1440px;          /* maximum page width */
 }
+
+
+/* =====================================================
+   GLOBAL RESET
+   Strips inconsistent browser defaults and sets
+   sensible base styles for every element on the page.
+   ===================================================== */
 
 * {
   box-sizing: border-box;
@@ -41,6 +50,7 @@ img {
   height: auto;
 }
 
+/* Makes form elements use the same font as the rest of the page */
 button,
 input,
 textarea,
@@ -48,14 +58,38 @@ select {
   font: inherit;
 }
 
+
+/* =====================================================
+   PAGE CONTAINER
+   The wrapper that centres all content and limits it
+   to the maximum width. The 32px side gap keeps content
+   away from the screen edges on desktop.
+   On mobile this narrows to 24px — see the Mobile section.
+   ===================================================== */
+
 .site-shell {
   width: min(var(--max), calc(100vw - 32px));
   margin: 0 auto;
 }
 
-/* =========================================================
-   02. HEADER
-   ========================================================= */
+/* Subtle fade-in animation applied when a new page loads */
+.site-shell--fade-in {
+  animation: pageFadeIn 0.5s ease;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
+/* =====================================================
+   HEADER
+   The top bar shown on every page. Contains the site
+   name and role on the left, and navigation links on
+   the right. On mobile the nav is replaced by a
+   hamburger menu — see the Mobile Menu section below.
+   ===================================================== */
 
 .site-header {
   position: relative;
@@ -108,14 +142,20 @@ select {
   text-decoration: none;
 }
 
+/* The current page's nav link is dimmed to show where you are */
 .main-nav a.is-active {
   opacity: 0.55;
 }
 
-/* =========================================================
-   03. HAMBURGER / MOBILE MENU
-   ========================================================= */
 
+/* =====================================================
+   MOBILE MENU
+   The hamburger icon and the dropdown it reveals.
+   Both are hidden on desktop — the Mobile section
+   at the bottom of this file switches them on.
+   ===================================================== */
+
+/* Hidden on desktop; shown on mobile */
 .hamburger {
   display: none;
   justify-self: end;
@@ -137,6 +177,7 @@ select {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
+/* Hidden on desktop; shown on mobile */
 .mobile-menu {
   display: none;
   position: absolute;
@@ -149,800 +190,15 @@ select {
   z-index: 100;
 }
 
-/* =========================================================
-   04. TYPOGRAPHY / SHARED ELEMENTS
-   ========================================================= */
 
-.section-label {
-  margin: 0 0 14px;
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.site-shell--fade-in {
-  animation: pageFadeIn 0.5s ease;
-}
-
-@keyframes pageFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.hero p,
-.lead {
-  margin: 0;
-  max-width: 100ch;
-  color: #353535;
-}
-
-.project-title {
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.meta-list,
-.tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 8px;
-}
-
-.tag-list span::after,
-.meta-list span::after {
-  content: ",";
-}
-
-.tag-list span:last-child::after,
-.meta-list span:last-child::after {
-  content: "";
-}
-
-/* =========================================================
-   05. HOME HERO
-   ========================================================= */
-
-.hero {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 32px;
-  padding: 30px 0 56px;
-  border-top: 1px solid var(--line);
-}
-
-.hero .section-label {
-  margin-bottom: 12px;
-}
-
-.hero h1,
-.page-title {
-  margin: 0 0 12px;
-  font-size: clamp(30px, 4vw, 64px);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 0.98;
-}
-
-/* =========================================================
-   06. HOME PROJECT CARDS
-   ========================================================= */
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.card-grid--atmospheric {
-  gap: 20px;
-}
-
-.project-card {
-  position: relative;
-  display: block;
-  min-height: 260px;
-  padding: 20px;
-  border: 1px solid var(--line);
-  color: inherit;
-  text-decoration: none;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.08);
-  transition: border-color 0.25s ease, background-color 0.25s ease;
-}
-
-.project-card--image {
-  cursor: pointer;
-}
-
-.project-card__media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.project-card__media img {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  width: 64%;
-  height: auto;
-  object-fit: contain;
-  opacity: 0.5;
-  filter: grayscale(90%) contrast(1.1) brightness(1);
-  transition: opacity 0.28s ease;
-}
-
-.project-card:hover .project-card__media img {
-  opacity: 1;
-}
-
-.project-card__content {
-  position: relative;
-  z-index: 1;
-  min-height: 216px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.project-card__content h3 {
-  margin: 0 0 8px;
-  font-size: 16px;
-  line-height: 1.3;
-  font-weight: 600;
-}
-
-.project-card__content p {
-  margin: 0;
-  max-width: 32ch;
-  font-size: 13px;
-  line-height: 1.4;
-  color: #444;
-}
-
-.project-card__meta {
-  margin-top: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.project-card:hover {
-  border-color: rgba(0, 0, 0, 0.08);
-  background: rgba(255, 255, 255, 0.12);
-}
-
-/* =========================================================
-   07. ARCHIVE HEADER / TOGGLE
-   ========================================================= */
-
-.archive-header {
-  padding-bottom: 24px;
-}
-
-.archive-header__top {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.archive-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px;
-  border: 1px solid var(--line);
-}
-
-.archive-toggle__button {
-  border: none;
-  background: transparent;
-  padding: 6px 10px;
-  margin: 0;
-  font: inherit;
-  font-size: 12px;
-  text-transform: uppercase;
-  color: var(--muted);
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.archive-toggle__button.is-active {
-  background: rgba(0, 0, 0, 0.06);
-  color: var(--fg);
-}
-
-/* =========================================================
-   08. ARCHIVE INDEX TABLE
-========================================================= */
-
-.project-table {
-  border-top: 1px solid var(--line);
-}
-
-.project-table--desktop {
-  display: block;
-}
-
-.project-table-mobile {
-  display: none;
-}
-
-.project-row,
-.project-table-head {
-  display: grid;
-  grid-template-columns: 72px 1.2fr 1.2fr 1.6fr 120px;
-  gap: 18px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-  align-items: start;
-}
-
-.project-table-head {
-  font-size: 12px;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.project-row:hover {
-  background: rgba(0, 0, 0, 0.02);
-}
-
-/* =========================================================
-   09. ARCHIVE OVERVIEW - DESKTOP
-   ========================================================= */
-
-.archive-overview {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 28px;
-  align-items: start;
-  min-height: 520px;
-}
-
-.archive-overview__preview {
-  position: sticky;
-  top: 24px;
-  min-height: 480px;
-}
-
-.archive-overview__image-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 480px;
-  padding: 24px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.archive-overview__image-wrap.is-visible {
-  opacity: 1;
-}
-
-.archive-overview__image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.archive-overview__list {
-  min-width: 0;
-}
-
-.archive-overview__head,
-.archive-overview__row {
-  display: grid;
-  grid-template-columns: 48px 1.3fr 1.1fr 1.8fr 72px;
-  gap: 18px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-  align-items: start;
-}
-
-.archive-overview__head {
-  border-top: 1px solid var(--line);
-  font-size: 12px;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.archive-overview__row {
-  color: inherit;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-
-.archive-overview__row:hover,
-.archive-overview__row.is-active {
-  background: rgba(0, 0, 0, 0.015);
-}
-
-/* =========================================================
-   10. ARCHIVE OVERVIEW - MOBILE
-   ========================================================= */
-
-.archive-overview-mobile {
-  display: none;
-}
-
-.archive-overview-mobile__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-.archive-overview-mobile__card {
-  display: block;
-  border: 1px solid var(--line);
-  text-decoration: none;
-  color: inherit;
-  overflow: hidden;
-}
-
-.archive-overview-mobile__image-wrap {
-  aspect-ratio: 3 / 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-
-.archive-overview-mobile__image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.archive-overview-mobile__content {
-  padding: 14px 16px 16px;
-}
-
-.archive-overview-mobile__content h3 {
-  margin: 0 0 8px;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.archive-overview-mobile__content p {
-  margin: 0 0 4px;
-  color: var(--muted);
-}
-
-/* =========================================================
-   11. PROJECT PAGE
-   ========================================================= */
-
-.project-page {
-  border-top: 1px solid var(--line);
-  padding-top: 40px;
-}
-
-.project-hero {
-  padding-bottom: 18px;
-}
-
-.project-hero__figure {
-  margin: 0;
-  background: #ecece8;
-}
-
-.project-hero__figure--clickable {
-  cursor: zoom-in;
-}
-
-.project-hero__image {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.project-intro {
-  padding-bottom: 14px;
-}
-
-.project-intro__text {
-  max-width: 90ch;
-}
-
-.project-intro h1 {
-  margin: 0 0 12px;
-  font-size: clamp(30px, 4vw, 56px);
-  line-height: 0.98;
-  letter-spacing: -0.03em;
-  font-weight: 400;
-  max-width: 16ch;
-}
-
-.project-intro .lead {
-  margin: 12px 0 0;
-  max-width: 42ch;
-  font-size: 15px;
-  line-height: 1.5;
-  color: #3f3f3f;
-}
-
-.project-meta {
-  padding-bottom: 28px;
-}
-
-.project-meta__line {
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  font-size: 12px;
-  line-height: 1.4;
-  color: var(--muted);
-}
-
-.project-meta__line span::after {
-  content: "/";
-  margin-left: 6px;
-}
-
-.project-meta__line span:last-child::after {
-  content: "";
-}
-
-.project-body {
-  max-width: 900px;
-  padding-bottom: 0;
-}
-
-.project-body__text {
-  max-width: 72ch;
-}
-
-.project-body__text p {
-  margin: 0 0 16px;
-  line-height: 1.68;
-  color: #2f2f2f;
-}
-
-.project-body__text p:last-child {
-  margin-bottom: 0;
-}
-
-.project-body a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease, opacity 0.2s ease;
-}
-
-.project-body a:hover {
-  border-bottom: 1px solid currentColor;
-  opacity: 0.7;
-}
-
-.project-ending-hero {
-  margin-top: 120px;
-}
-
-@media (max-width: 900px) {
-  .project-ending-hero {
-    margin-top: 72px;
-  }
-}
-
-.project-ending-hero {
-  margin-top: 120px;
-}
-
-@media (max-width: 900px) {
-  .project-ending-hero {
-    margin-top: 72px;
-  }
-}
-
-/* =========================================================
-   12. PROJECT GALLERY / LIGHTBOX
-   ========================================================= */
-
-.project-gallery-section {
-  padding-top: 56px;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 24px 20px;
-  max-width: 100%;
-  padding: 0 0 48px;
-}
-
-.gallery-item {
-  margin: 0;
-  cursor: pointer;
-}
-
-.gallery-item--full {
-  grid-column: 1 / -1;
-}
-
-.gallery-item--half {
-  grid-column: span 6;
-}
-
-.gallery-image-wrap {
-  position: relative;
-  overflow: hidden;
-  background: #ecece8;
-}
-
-.gallery-item img {
-  display: block;
-  width: 100%;
-  height: auto;
-  filter: none;
-  transition: transform 0.28s ease;
-}
-
-.gallery-item:hover img {
-  transform: scale(1.01);
-}
-
-.gallery-item figcaption {
-  margin-top: 8px;
-  padding: 0;
-  font-size: 11px;
-  line-height: 1.4;
-  color: var(--muted);
-  border: none;
-}
-
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(244, 244, 242, 0.96);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-
-.lightbox-content {
-  position: relative;
-  max-width: min(92vw, 1600px);
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.lightbox-image {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 84vh;
-  object-fit: contain;
-  display: block;
-  filter: none;
-}
-
-.lightbox-caption {
-  margin: 10px 0 0;
-  font-size: 12px;
-  color: var(--muted);
-  text-align: center;
-}
-
-.lightbox-close {
-  position: fixed;
-  top: 18px;
-  right: 20px;
-  border: none;
-  background: transparent;
-  color: #555;
-  font-size: 28px;
-  line-height: 1;
-  cursor: pointer;
-  padding: 6px 10px;
-}
-
-.lightbox-nav {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  background: transparent;
-  color: #555;
-  font-size: 42px;
-  line-height: 1;
-  cursor: pointer;
-  padding: 12px;
-}
-
-.lightbox-nav--prev {
-  left: 12px;
-}
-
-.lightbox-nav--next {
-  right: 12px;
-}
-
-.lightbox-close:hover,
-.lightbox-nav:hover {
-  color: #111;
-}
-
-/* =========================================================
-   13. CV
-   ========================================================= */
-
-.cv-page {
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 24px 0 72px;
-}
-
-.cv-header {
-  border-top: 1px solid var(--line);
-  padding-top: 24px;
-  margin-bottom: 40px;
-}
-
-.cv-section {
-  padding: 24px 0;
-  border-top: 1px solid var(--line);
-}
-
-.cv-section h2 {
-  margin: 0 0 16px;
-  font-size: 18px;
-  line-height: 1.2;
-}
-
-.cv-section p {
-  max-width: 720px;
-  margin: 0 0 16px;
-  line-height: 1.6;
-}
-
-.cv-subtitle {
-  margin: 0.25rem 0 0.75rem;
-}
-
-.cv-contact {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-}
-
-.cv-download {
-  display: inline-block;
-  margin-top: 24px;
-  padding: 10px 16px;
-  border: 1px solid var(--line);
-  text-decoration: none;
-  font-size: 14px;
-  transition: all 0.2s ease;
-}
-
-.cv-download:hover {
-  background: #000;
-  color: #fff;
-}
-
-.cv-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.cv-tag {
-  display: inline-block;
-  padding: 0.35rem 0.65rem;
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  line-height: 1.2;
-}
-
-.cv-item {
-  padding: 0;
-}
-
-.cv-item--experience {
-  display: grid;
-  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
-  column-gap: 2.5rem;
-  align-items: start;
-  margin-bottom: 2.5rem;
-}
-
-.cv-item--education {
-  display: grid;
-  grid-template-columns: minmax(320px, 1.4fr) minmax(220px, 0.9fr) minmax(220px, 1fr);
-  column-gap: 2rem;
-  align-items: start;
-  margin-bottom: 1.5rem;
-}
-
-.cv-item__sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.cv-item__content {
-  min-width: 0;
-}
-
-.cv-meta {
-  font-weight: 600;
-  line-height: 1.35;
-}
-
-.cv-detail {
-  color: #555;
-  line-height: 1.35;
-}
-
-.cv-note {
-  line-height: 1.4;
-}
-
-.cv-list {
-  margin: 0;
-  padding-left: 1.2rem;
-}
-
-.cv-list li {
-  margin: 0;
-  line-height: 1.5;
-}
-
-.cv-list li + li {
-  margin-top: 0.35rem;
-}
-
-@media (max-width: 900px) {
-  .cv-page {
-    padding: 24px 0 56px;
-  }
-
-  .cv-item--experience,
-  .cv-item--education {
-    grid-template-columns: 1fr;
-    row-gap: 0.75rem;
-  }
-
-  .cv-detail {
-    text-align: left;
-  }
-}
-.cv-project-links {
-  margin-bottom: 0.75rem;
-}
-
-.cv-project-link {
-  display: inline-block;
-  font-size: 0.95rem;
-  text-decoration: underline;
-  text-underline-offset: 0.12em;
-}
-
-.cv-project-link:hover {
-  opacity: 0.7;
-}
-
-/* =========================================================
-   14. FOOTER
-   ========================================================= */
+/* =====================================================
+   FOOTER
+   The bottom bar shown on every page. Contains links,
+   copyright text, and other site-level information.
+   The footer has its own responsive adjustments below
+   for desktop and mobile rather than in the shared
+   responsive sections at the end of the file.
+   ===================================================== */
 
 .site-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.15);
@@ -1004,7 +260,7 @@ select {
   opacity: 0.7;
 }
 
-/* desktop spacing refinement */
+/* Footer on desktop — slightly tighter padding and right-aligned last group */
 @media (min-width: 769px) {
   .site-footer {
     padding-top: 16px;
@@ -1022,7 +278,7 @@ select {
   }
 }
 
-/* mobile */
+/* Footer on mobile — stacks vertically */
 @media (max-width: 768px) {
   .site-footer {
     display: flex;
@@ -1057,9 +313,980 @@ select {
   }
 }
 
-/* =========================================================
-   15. TEMPORAL DIAGRAM (MANAWATAKI)
-   ========================================================= */
+
+/* =====================================================
+   SHARED UTILITIES
+   Small reusable styles used across multiple pages:
+   section labels, intro/summary text, project titles,
+   and inline comma-separated tag and metadata lists.
+   ===================================================== */
+
+/* Small all-caps label used above sections, e.g. "Selected Work" */
+.section-label {
+  margin: 0 0 14px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Summary paragraph on the home hero and project intros */
+.hero p,
+.lead {
+  margin: 0;
+  max-width: 100ch;
+  color: #353535;
+}
+
+/* Project title — bold and uppercase */
+.project-title {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Inline lists of tags or metadata, laid out as wrapping rows */
+.meta-list,
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+/* Adds a comma after each item except the last */
+.tag-list span::after,
+.meta-list span::after {
+  content: ",";
+}
+
+.tag-list span:last-child::after,
+.meta-list span:last-child::after {
+  content: "";
+}
+
+
+/* =====================================================
+   HOME PAGE: HERO SECTION
+   The large introductory text block at the top of
+   the home page. Two columns on desktop, one on mobile.
+   ===================================================== */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+  padding: 30px 0 56px;
+  border-top: 1px solid var(--line);
+}
+
+.hero .section-label {
+  margin-bottom: 12px;
+}
+
+/* Large display heading — scales fluidly between 30px and 64px */
+.hero h1,
+.page-title {
+  margin: 0 0 12px;
+  font-size: clamp(30px, 4vw, 64px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
+
+
+/* =====================================================
+   HOME PAGE: PROJECT CARDS
+   The two-column grid of featured project cards.
+   Each card has text in front and a background image
+   that starts faded and greyscale, becoming vivid on hover.
+   ===================================================== */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.card-grid--atmospheric {
+  gap: 20px;
+}
+
+.project-card {
+  position: relative;
+  display: block;
+  min-height: 260px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.project-card--image {
+  cursor: pointer;
+}
+
+/* The image container sits behind the text (z-index 0) */
+.project-card__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Faded and greyscale by default; full colour on hover */
+.project-card__media img {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 64%;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.5;
+  filter: grayscale(90%) contrast(1.1) brightness(1);
+  transition: opacity 0.28s ease;
+}
+
+.project-card:hover .project-card__media img {
+  opacity: 1;
+}
+
+/* The text content sits above the image (z-index 1) */
+.project-card__content {
+  position: relative;
+  z-index: 1;
+  min-height: 216px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-card__content h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.project-card__content p {
+  margin: 0;
+  max-width: 32ch;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #444;
+}
+
+.project-card__meta {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.project-card:hover {
+  border-color: rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* =====================================================
+   ARCHIVE PAGE: HEADER & VIEW TOGGLE
+   The top section of the archive listing page, including
+   the "Table / Overview" toggle that switches between
+   the two layout modes.
+   ===================================================== */
+
+.archive-header {
+  padding-bottom: 24px;
+}
+
+.archive-header__top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.archive-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+}
+
+.archive-toggle__button {
+  border: none;
+  background: transparent;
+  padding: 6px 10px;
+  margin: 0;
+  font: inherit;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* The currently selected toggle option */
+.archive-toggle__button.is-active {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--fg);
+}
+
+
+/* =====================================================
+   ARCHIVE PAGE: TABLE VIEW
+   The tabular list of all projects, shown when the
+   "Table" toggle is selected. Hidden on mobile and
+   replaced by the mobile card layout (see Tablet section).
+   ===================================================== */
+
+.project-table {
+  border-top: 1px solid var(--line);
+}
+
+/* Shown on desktop — hidden via the Tablet responsive section */
+.project-table--desktop {
+  display: block;
+}
+
+/* Hidden on desktop — shown via the Tablet responsive section */
+.project-table-mobile {
+  display: none;
+}
+
+/* Each data row and the header row share the same column layout */
+.project-row,
+.project-table-head {
+  display: grid;
+  grid-template-columns: 72px 1.2fr 1.2fr 1.6fr 120px;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+
+.project-table-head {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.project-row:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+
+/* =====================================================
+   ARCHIVE PAGE: OVERVIEW VIEW (Desktop)
+   A two-column layout where a preview image sticks
+   to the left as you scroll through the project list
+   on the right. Shown when the "Overview" toggle is active.
+   Hidden on mobile — replaced by the mobile version below.
+   ===================================================== */
+
+.archive-overview {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 28px;
+  align-items: start;
+  min-height: 520px;
+}
+
+/* The image panel stays fixed as you scroll the project list */
+.archive-overview__preview {
+  position: sticky;
+  top: 24px;
+  min-height: 480px;
+}
+
+/* Invisible until a project row is hovered */
+.archive-overview__image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.archive-overview__image-wrap.is-visible {
+  opacity: 1;
+}
+
+.archive-overview__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.archive-overview__list {
+  min-width: 0;
+}
+
+.archive-overview__head,
+.archive-overview__row {
+  display: grid;
+  grid-template-columns: 48px 1.3fr 1.1fr 1.8fr 72px;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+
+.archive-overview__head {
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.archive-overview__row {
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.archive-overview__row:hover,
+.archive-overview__row.is-active {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+
+/* =====================================================
+   ARCHIVE PAGE: OVERVIEW VIEW (Mobile)
+   Stacked image cards used on smaller screens instead
+   of the two-column desktop overview. Hidden on desktop
+   — switched on via the Tablet responsive section.
+   ===================================================== */
+
+/* Hidden on desktop */
+.archive-overview-mobile {
+  display: none;
+}
+
+.archive-overview-mobile__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.archive-overview-mobile__card {
+  display: block;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+}
+
+.archive-overview-mobile__image-wrap {
+  aspect-ratio: 3 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.archive-overview-mobile__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.archive-overview-mobile__content {
+  padding: 14px 16px 16px;
+}
+
+.archive-overview-mobile__content h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.archive-overview-mobile__content p {
+  margin: 0 0 4px;
+  color: var(--muted);
+}
+
+
+/* =====================================================
+   PROJECT PAGE: INTRO & METADATA
+   Styles for the top section of individual project pages:
+   the hero image, the project title and summary text,
+   and the metadata line (year, category, scale, etc.).
+   ===================================================== */
+
+.project-page {
+  border-top: 1px solid var(--line);
+  padding-top: 40px;
+}
+
+.project-hero {
+  padding-bottom: 18px;
+}
+
+.project-hero__figure {
+  margin: 0;
+  background: #ecece8;
+}
+
+/* Zoom cursor signals the hero image can be opened in the lightbox */
+.project-hero__figure--clickable {
+  cursor: zoom-in;
+}
+
+.project-hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.project-intro {
+  padding-bottom: 14px;
+}
+
+.project-intro__text {
+  max-width: 90ch;
+}
+
+/* Project title — scales fluidly between 30px and 56px */
+.project-intro h1 {
+  margin: 0 0 12px;
+  font-size: clamp(30px, 4vw, 56px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  max-width: 16ch;
+}
+
+.project-intro .lead {
+  margin: 12px 0 0;
+  max-width: 42ch;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #3f3f3f;
+}
+
+.project-meta {
+  padding-bottom: 28px;
+}
+
+/* Metadata items displayed inline, separated by "/" */
+.project-meta__line {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.project-meta__line span::after {
+  content: "/";
+  margin-left: 6px;
+}
+
+.project-meta__line span:last-child::after {
+  content: "";
+}
+
+
+/* =====================================================
+   PROJECT PAGE: BODY TEXT
+   The main written content of a project page.
+   Links in the body get an underline only on hover.
+   The ending hero is the large image at the very bottom.
+   ===================================================== */
+
+.project-body {
+  max-width: 900px;
+  padding-bottom: 0;
+}
+
+.project-body__text {
+  max-width: 72ch;
+}
+
+.project-body__text p {
+  margin: 0 0 16px;
+  line-height: 1.68;
+  color: #2f2f2f;
+}
+
+.project-body__text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Links within body text — underline appears on hover only */
+.project-body a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.project-body a:hover {
+  border-bottom: 1px solid currentColor;
+  opacity: 0.7;
+}
+
+/* The large closing image shown at the bottom of a project page */
+.project-ending-hero {
+  margin-top: 120px;
+}
+
+@media (max-width: 900px) {
+  .project-ending-hero {
+    margin-top: 72px;
+  }
+}
+
+.project-ending-hero {
+  margin-top: 120px;
+}
+
+@media (max-width: 900px) {
+  .project-ending-hero {
+    margin-top: 72px;
+  }
+}
+
+
+/* =====================================================
+   PROJECT PAGE: GALLERY & LIGHTBOX
+   The image grid at the bottom of each project page.
+   Images can be full-width or half-width within a
+   12-column grid. Clicking any image opens it in a
+   full-screen lightbox with navigation arrows.
+   ===================================================== */
+
+.project-gallery-section {
+  padding-top: 56px;
+}
+
+/* 12-column grid — full and half images are sized within this */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 24px 20px;
+  max-width: 100%;
+  padding: 0 0 48px;
+}
+
+.gallery-item {
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Spans all 12 columns — full page width */
+.gallery-item--full {
+  grid-column: 1 / -1;
+}
+
+/* Spans 6 of 12 columns — half width */
+.gallery-item--half {
+  grid-column: span 6;
+}
+
+.gallery-image-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #ecece8;
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: none;
+  transition: transform 0.28s ease;
+}
+
+/* Slight zoom on hover to indicate the image is clickable */
+.gallery-item:hover img {
+  transform: scale(1.01);
+}
+
+.gallery-item figcaption {
+  margin-top: 8px;
+  padding: 0;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+  border: none;
+}
+
+/* Full-screen overlay that appears when a gallery image is clicked */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(244, 244, 242, 0.96);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: min(92vw, 1600px);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 84vh;
+  object-fit: contain;
+  display: block;
+  filter: none;
+}
+
+.lightbox-caption {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* The × close button fixed to the top-right corner */
+.lightbox-close {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+/* Previous and next arrow buttons on the left and right edges */
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 42px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 12px;
+}
+
+.lightbox-nav--prev {
+  left: 12px;
+}
+
+.lightbox-nav--next {
+  right: 12px;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+  color: #111;
+}
+
+
+/* =====================================================
+   CV PAGE
+   Styles for the CV / résumé page. Experience entries
+   use a two-column layout; education uses three columns.
+   Both collapse to a single column on mobile.
+   ===================================================== */
+
+.cv-page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 24px 0 72px;
+}
+
+.cv-header {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  margin-bottom: 40px;
+}
+
+.cv-section {
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+
+.cv-section h2 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.cv-section p {
+  max-width: 720px;
+  margin: 0 0 16px;
+  line-height: 1.6;
+}
+
+.cv-subtitle {
+  margin: 0.25rem 0 0.75rem;
+}
+
+.cv-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+/* "Download PDF" button — inverts to white-on-black on hover */
+.cv-download {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.cv-download:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* Pill-shaped skill and software tags */
+.cv-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cv-tag {
+  display: inline-block;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.cv-item {
+  padding: 0;
+}
+
+/* Two-column layout for experience entries (sidebar + content) */
+.cv-item--experience {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  column-gap: 2.5rem;
+  align-items: start;
+  margin-bottom: 2.5rem;
+}
+
+/* Three-column layout for education entries */
+.cv-item--education {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.4fr) minmax(220px, 0.9fr) minmax(220px, 1fr);
+  column-gap: 2rem;
+  align-items: start;
+  margin-bottom: 1.5rem;
+}
+
+.cv-item__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cv-item__content {
+  min-width: 0;
+}
+
+.cv-meta {
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.cv-detail {
+  color: #555;
+  line-height: 1.35;
+}
+
+.cv-note {
+  line-height: 1.4;
+}
+
+.cv-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.cv-list li {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.cv-list li + li {
+  margin-top: 0.35rem;
+}
+
+/* CV on tablet and mobile — columns collapse to a single stack */
+@media (max-width: 900px) {
+  .cv-page {
+    padding: 24px 0 56px;
+  }
+
+  .cv-item--experience,
+  .cv-item--education {
+    grid-template-columns: 1fr;
+    row-gap: 0.75rem;
+  }
+
+  .cv-detail {
+    text-align: left;
+  }
+}
+
+/* Links within the CV that point to related portfolio projects */
+.cv-project-links {
+  margin-bottom: 0.75rem;
+}
+
+.cv-project-link {
+  display: inline-block;
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.cv-project-link:hover {
+  opacity: 0.7;
+}
+
+
+/* =====================================================
+   LANDING PAGE
+   The full-screen black intro page shown before the
+   main portfolio. The navigation fades in after a short
+   delay, then the whole page fades out when the user
+   clicks through to the site.
+   ===================================================== */
+
+.landing-page {
+  min-height: 100vh;
+  background: #000;
+  color: #f4f4f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Added by JavaScript to trigger the fade-out on navigation */
+.landing-page.is-exiting {
+  opacity: 0;
+}
+
+.landing-page__inner {
+  width: 100%;
+  padding: 48px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.landing-page__name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Nav starts invisible and slides up; JavaScript adds .is-visible after the delay */
+.landing-page__nav {
+  display: flex;
+  gap: 48px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+}
+
+.landing-page__nav.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.landing-page__link {
+  border: none;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-size: 13px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.landing-page__link:hover {
+  opacity: 0.65;
+}
+
+/* Landing page on mobile — stacked layout with smaller padding */
+@media (max-width: 768px) {
+  .landing-page__inner {
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 18px;
+  }
+
+  .landing-page__nav {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .landing-page__name,
+  .landing-page__link {
+    font-size: 12px;
+  }
+}
+
+
+/* =====================================================
+   TEMPORAL DIAGRAM  (Manawataki project only)
+   A bespoke interactive diagram for the Manawataki
+   thesis. Twelve phase images are positioned manually
+   over a base illustration.
+
+   TO REPOSITION A PHASE IMAGE:
+   Find the .phase-N rule and adjust:
+     left      — horizontal position, as % from the left edge
+     top       — vertical position, as % from the top edge
+     width     — how wide the image is, as % of the diagram width
+     max-width — hard size cap in pixels
+
+   z-index controls which image sits on top when images overlap.
+   Desktop positions are defined first; tablet/mobile
+   overrides follow inside the @media block at the bottom
+   of this section.
+   ===================================================== */
 
 .temporal-diagram {
   width: 100%;
@@ -1072,18 +1299,23 @@ select {
   margin: 0;
 }
 
+/* The base illustration that all phase images sit on top of */
 .temporal-diagram__base {
   display: block;
   width: 100%;
   height: auto;
 }
 
+/* Transparent layer that sits above the base image */
 .temporal-diagram__overlay {
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
 }
+
+/* --- Phase images: shared base styles ---
+   Position, size, and rotation are set per .phase-N rule below. */
 
 .temporal-diagram__phase {
   position: absolute;
@@ -1093,76 +1325,39 @@ select {
   background: transparent;
   cursor: pointer;
   pointer-events: auto;
-  transform: translate(-50%, -50%);
-  transition: transform 0.2s ease, opacity 0.2s ease;
   text-align: left;
+  transition: opacity 0.2s ease;
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.15));
-}
-
-.temporal-diagram__phase:hover {
-  transform: translate(-50%, -50%) scale(1.03);
-  z-index: 20;
 }
 
 .temporal-diagram__phase img {
   display: block;
   width: 100%;
   height: auto;
+  transition: transform 0.2s ease;
+  transform-origin: center;
 }
 
-.temporal-diagram__phase--primary {
-  width: 15.5%;
-  max-width: 185px;
-}
-
-.temporal-diagram__phase--secondary {
-  width: 8.5%;
-  max-width: 95px;
-  opacity: 0.88;
-}
-
-/* ENERGY SCALING */
-
-/* Low — quiet */
-.temporal-diagram__phase--low.temporal-diagram__phase--primary {
-  width: 12%;
-}
-
-/* Waning — slightly restrained */
-.temporal-diagram__phase--waning.temporal-diagram__phase--primary {
-  width: 14%;
-}
-
-/* Passive — unstable but present */
-.temporal-diagram__phase--passive.temporal-diagram__phase--primary {
-  width: 15%;
-}
-
-/* Moderate — stable */
-.temporal-diagram__phase--moderate.temporal-diagram__phase--primary {
-  width: 16%;
-}
-
-/* Productive — stronger */
-.temporal-diagram__phase--productive.temporal-diagram__phase--primary {
-  width: 18%;
-}
-
-/* High — dominant */
-.temporal-diagram__phase--high.temporal-diagram__phase--primary {
-  width: 21%;
-}
-
-/* PEAK OVERRIDE */
-.phase-10 {
-  width: 24% !important;
+/* Hovered phase rises above any overlapping images */
+.temporal-diagram__phase:hover {
   z-index: 20;
 }
 
-.temporal-diagram__phase--secondary {
-  transform: translate(-50%, -50%) scale(0.9);
-  opacity: 0.7;
+.temporal-diagram__phase:hover img {
+  transform: scale(1.03);
 }
+
+/* Primary image — fully opaque */
+.temporal-diagram__phase--primary {
+  opacity: 1;
+}
+
+/* Secondary (companion) image — slightly faded */
+.temporal-diagram__phase--secondary {
+  opacity: 0.72;
+}
+
+/* --- Phase labels --- */
 
 .temporal-diagram__phase-label {
   display: inline-block;
@@ -1185,33 +1380,122 @@ select {
   opacity: 0.7;
 }
 
-/* DESKTOP POSITIONING */
+/* --- Desktop phase positions ---
+   Phases 1, 3, 5, 7, 9, 11 are primary images (larger).
+   Phases 2, 4, 6, 8, 10, 12 are secondary images (smaller).
+   Edit left/top/width/max-width to reposition. */
 
-/* Low */
-.phase-1 { left: 18%;  top: 55%; z-index: 6; }   /* Whirowhiti */
-.phase-2 { left: 10%;  top: 70%; z-index: 5; }   /* Mutuwhenua */
+.phase-1 {
+  left: 5%;
+  top: 0%;
+  width: 12%;
+  max-width: 100px;
+  z-index: 6;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
 
-/* Waning */
-.phase-3 { left: 29%; top: 40%; z-index: 7; }   /* Māure */
-.phase-4 { left: 32%; top: 60%; z-index: 6; }   /* Ōmutu */
+.phase-2 {
+  left: 10%;
+  top: 0%;
+  width: 8.5%;
+  max-width: 95px;
+  z-index: 5;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
 
-/* Passive */
-.phase-5 { left: 43%; top: 32%; z-index: 8; }   /* Korekore-te-Ngangana*/
-.phase-6 { left: 48%; top: 55%; z-index: 7; }   /* Atuahaehae*/
+.phase-3 {
+  left: 29%;
+  top: 40%;
+  width: 14%;
+  max-width: 185px;
+  z-index: 7;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
 
-/* Moderate */
-.phase-7 { left: 58.5%; top: 48%; z-index: 10; }  /* Ō Uenuku */
-.phase-8 { left: 60%; top: 68%; z-index: 9; }   /* Tamateatūātahi*/
+.phase-4 {
+  left: 32%;
+  top: 60%;
+  width: 8.5%;
+  max-width: 95px;
+  z-index: 6;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
 
-/* Productive */
-.phase-9  { left: 70%; top: 30%; z-index: 12; } /* Tangaroa-ā-kiokio */
-.phase-10 { left: 75%; top: 55%; z-index: 11; } /* Rākaunui */
+.phase-5 {
+  left: 43%;
+  top: 32%;
+  width: 15%;
+  max-width: 185px;
+  z-index: 8;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
 
-/* High */
-.phase-11 { left: 85%; top: 25%; z-index: 14; } /* Ōrongonui */
-.phase-12 { left: 92%; top: 50%; z-index: 13; } /* "Māwharu */
+.phase-6 {
+  left: 48%;
+  top: 55%;
+  width: 8.5%;
+  max-width: 95px;
+  z-index: 7;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
 
-/* LIGHTBOX */
+.phase-7 {
+  left: 58.5%;
+  top: 48%;
+  width: 16%;
+  max-width: 185px;
+  z-index: 10;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
+
+.phase-8 {
+  left: 60%;
+  top: 68%;
+  width: 8.5%;
+  max-width: 95px;
+  z-index: 9;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
+
+.phase-9 {
+  left: 70%;
+  top: 30%;
+  width: 18%;
+  max-width: 185px;
+  z-index: 12;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
+
+.phase-10 {
+  left: 75%;
+  top: 55%;
+  width: 24%;
+  max-width: 220px;
+  z-index: 11;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
+
+.phase-11 {
+  left: 85%;
+  top: 25%;
+  width: 21%;
+  max-width: 185px;
+  z-index: 14;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
+
+.phase-12 {
+  left: 92%;
+  top: 50%;
+  width: 8.5%;
+  max-width: 95px;
+  z-index: 13;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
+
+/* --- Temporal diagram lightbox ---
+   A darker, more focused lightbox for viewing phase
+   images in detail. Separate from the gallery lightbox. */
 
 .temporal-lightbox {
   position: fixed;
@@ -1220,34 +1504,36 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  background: rgba(15, 15, 15, 0.9);
+  padding: 20px;
+  background: rgba(15, 15, 15, 0.92);
 }
 
 .temporal-lightbox__content {
   position: relative;
-  width: min(1100px, 100%);
+  width: min(1200px, 100%);
   max-height: 90vh;
   display: grid;
-  grid-template-columns: 1.4fr 0.8fr;
-  gap: 24px;
-  padding: 24px;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 16px;
   background: #f4f4f2;
   overflow: auto;
 }
 
 .temporal-lightbox__close {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 40px;
-  height: 40px;
+  top: 10px;
+  right: 10px;
+  width: 48px;
+  height: 48px;
   border: 0;
   background: transparent;
-  font-size: 2rem;
+  font-size: 2.2rem;
   line-height: 1;
   cursor: pointer;
   color: #111;
+  display: grid;
+  place-items: center;
 }
 
 .temporal-lightbox__image-wrap {
@@ -1260,10 +1546,10 @@ select {
 .temporal-lightbox__image {
   display: block;
   max-width: 100%;
-  max-height: 75vh;
+  max-height: 88vh;
   object-fit: contain;
   background: transparent;
-  padding: 10px;
+  padding: 0;
 }
 
 .temporal-lightbox__meta {
@@ -1295,21 +1581,13 @@ select {
   color: #222;
 }
 
-/* MOBILE */
+/* --- Temporal diagram on tablet and mobile ---
+   Phase images are repositioned for narrower screens.
+   Same properties apply: left, top, width, max-width. */
 
 @media (max-width: 900px) {
   .temporal-diagram {
     margin: 72px 0 56px;
-  }
-
-  .temporal-diagram__phase--primary {
-    width: 16%;
-    max-width: 92px;
-  }
-
-  .temporal-diagram__phase--secondary {
-    width: 9%;
-    max-width: 52px;
   }
 
   .temporal-diagram__phase-label {
@@ -1321,47 +1599,153 @@ select {
     letter-spacing: 0.08em;
   }
 
+  /* Secondary labels hidden on small screens to reduce clutter */
   .temporal-diagram__phase-label--secondary {
     display: none;
   }
 
-  .phase-1 { left: 7%; top: 39%; }
-  .phase-2 { left: 11%; top: 43%; }
+  .phase-1 {
+    left: 7%;
+    top: 39%;
+    width: 14%;
+    max-width: 92px;
+    z-index: 6;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
 
-  .phase-3 { left: 18%; top: 47%; }
-  .phase-4 { left: 22%; top: 43%; }
+  .phase-2 {
+    left: 11%;
+    top: 43%;
+    width: 9%;
+    max-width: 52px;
+    z-index: 5;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
 
-  .phase-5 { left: 30%; top: 44%; }
-  .phase-6 { left: 34%; top: 40%; }
+  .phase-3 {
+    left: 18%;
+    top: 47%;
+    width: 14%;
+    max-width: 92px;
+    z-index: 7;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
 
-  .phase-7 { left: 44%; top: 36%; }
-  .phase-8 { left: 48%; top: 40%; }
+  .phase-4 {
+    left: 22%;
+    top: 43%;
+    width: 9%;
+    max-width: 52px;
+    z-index: 6;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
 
-  .phase-9 { left: 59%; top: 32%; }
-  .phase-10 { left: 63%; top: 36%; }
+  .phase-5 {
+    left: 30%;
+    top: 44%;
+    width: 14%;
+    max-width: 92px;
+    z-index: 8;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
 
-  .phase-11 { left: 76%; top: 28%; }
-  .phase-12 { left: 80%; top: 33%; }
+  .phase-6 {
+    left: 34%;
+    top: 40%;
+    width: 9%;
+    max-width: 52px;
+    z-index: 7;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+
+  .phase-7 {
+    left: 44%;
+    top: 36%;
+    width: 14%;
+    max-width: 92px;
+    z-index: 10;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+
+  .phase-8 {
+    left: 48%;
+    top: 40%;
+    width: 9%;
+    max-width: 52px;
+    z-index: 9;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+
+  .phase-9 {
+    left: 59%;
+    top: 32%;
+    width: 14%;
+    max-width: 92px;
+    z-index: 12;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+
+  .phase-10 {
+    left: 63%;
+    top: 36%;
+    width: 18%;
+    max-width: 120px;
+    z-index: 11;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+
+  .phase-11 {
+    left: 76%;
+    top: 28%;
+    width: 14%;
+    max-width: 92px;
+    z-index: 14;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+
+  .phase-12 {
+    left: 80%;
+    top: 33%;
+    width: 9%;
+    max-width: 52px;
+    z-index: 13;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+
+  .temporal-lightbox {
+    padding: 12px;
+  }
 
   .temporal-lightbox__content {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 18px;
+    gap: 14px;
+    padding: 14px;
     width: min(94vw, 100%);
+    max-height: 92vh;
+  }
+
+  .temporal-lightbox__close {
+    top: 8px;
+    right: 8px;
+    width: 48px;
+    height: 48px;
+    font-size: 2rem;
   }
 
   .temporal-lightbox__image {
-    max-height: 52vh;
-    padding: 0;
-    background: none;
+    max-height: 75vh;
   }
 }
 
-/* =========================================================
-   16. RESPONSIVE - TABLET
-   ========================================================= */
+
+/* =====================================================
+   RESPONSIVE: TABLET  (screens narrower than 900px)
+   Collapses multi-column layouts to single column,
+   swaps the desktop project table for mobile cards,
+   and switches the archive overview to its mobile version.
+   ===================================================== */
 
 @media (max-width: 900px) {
+  /* Header, hero, and project intro collapse to one column */
   .site-header,
   .hero,
   .project-intro {
@@ -1374,10 +1758,12 @@ select {
     text-align: left;
   }
 
+  /* Home page cards go single column */
   .card-grid {
     grid-template-columns: 1fr;
   }
 
+  /* Desktop table hidden; mobile card list shown */
   .project-table--desktop {
     display: none;
   }
@@ -1432,6 +1818,7 @@ select {
     gap: 0.35rem 0.75rem;
   }
 
+  /* Desktop overview hidden; mobile overview shown */
   .archive-overview--desktop {
     display: none;
   }
@@ -1477,6 +1864,7 @@ select {
     margin: 0.1rem 0;
   }
 
+  /* Gallery collapses from 12-column to 2-column */
   .gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1490,11 +1878,16 @@ select {
   }
 }
 
-/* =========================================================
-   17. RESPONSIVE - MOBILE
-   ========================================================= */
+
+/* =====================================================
+   RESPONSIVE: MOBILE  (screens narrower than 768px)
+   Fine-tuned adjustments for phones. Tighter padding,
+   the hamburger menu replaces the desktop nav, and
+   secondary content is hidden to keep things clean.
+   ===================================================== */
 
 @media (max-width: 768px) {
+  /* Side padding narrows from 32px to 24px on phones */
   .site-shell {
     width: min(var(--max), calc(100vw - 24px));
   }
@@ -1506,6 +1899,7 @@ select {
     margin-bottom: 20px;
   }
 
+  /* Desktop nav hidden; hamburger button shown instead */
   .main-nav {
     display: none;
   }
@@ -1514,6 +1908,7 @@ select {
     display: block;
   }
 
+  /* Mobile dropdown nav — revealed when the hamburger is tapped */
   .mobile-menu {
     display: block;
     grid-column: 1 / -1;
@@ -1546,16 +1941,19 @@ select {
     margin-bottom: 4px;
   }
 
+  /* Table column headers hidden on mobile — columns are implied */
   .project-table-head {
     display: none;
   }
 
+  /* Project rows collapse to a single stacked column */
   .project-row {
     grid-template-columns: 1fr;
     gap: 6px;
     padding: 14px 0 16px;
   }
 
+  /* Secondary text within certain cells is hidden to save space */
   .project-row > div:nth-child(2) > div:nth-child(2) {
     display: none;
   }
@@ -1580,6 +1978,7 @@ select {
     font-size: 12px;
   }
 
+  /* Hide desktop overview; show mobile overview */
   .archive-overview--desktop {
     display: none;
   }
@@ -1588,10 +1987,12 @@ select {
     display: block;
   }
 
+  /* Cards go single column */
   .card-grid {
     grid-template-columns: 1fr;
   }
 
+  /* Project cards are slightly shorter and hide the summary text */
   .project-card {
     min-height: 220px;
     padding: 18px;
@@ -1610,6 +2011,7 @@ select {
     opacity: 1;
   }
 
+  /* Summary text hidden on mobile to keep cards compact */
   .project-card__content p {
     display: none;
   }
@@ -1623,6 +2025,7 @@ select {
     font-weight: 600;
   }
 
+  /* Project page spacing tightens on mobile */
   .project-page {
     padding-top: 28px;
   }
@@ -1675,6 +2078,7 @@ select {
     line-height: 1.62;
   }
 
+  /* Gallery goes single column on mobile */
   .project-gallery-section {
     padding-top: 48px;
   }
@@ -1704,6 +2108,7 @@ select {
     text-align: left;
   }
 
+  /* Lightbox adjustments for phones */
   .lightbox {
     padding: 16px;
   }
@@ -1737,6 +2142,7 @@ select {
     right: 4px;
   }
 
+  /* Footer stacks vertically on mobile */
   .site-footer {
     flex-direction: column;
     align-items: flex-start;
@@ -1746,90 +2152,5 @@ select {
   .site-footer__left,
   .site-footer__right {
     gap: 12px;
-  }
-}
-
-/* =========================================================
-   17. LANDING PAGE
-   ========================================================= */
-
-.landing-page {
-  min-height: 100vh;
-  background: #000;
-  color: #f4f4f2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.landing-page.is-exiting {
-  opacity: 0;
-}
-
-.landing-page__inner {
-  width: 100%;
-  padding: 48px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.landing-page__name {
-  margin: 0;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-.landing-page__nav {
-  display: flex;
-  gap: 48px;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  pointer-events: none;
-}
-
-.landing-page__nav.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.landing-page__link {
-  border: none;
-  background: transparent;
-  color: inherit;
-  padding: 0;
-  margin: 0;
-  font: inherit;
-  font-size: 13px;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.landing-page__link:hover {
-  opacity: 0.65;
-}
-
-@media (max-width: 768px) {
-  .landing-page__inner {
-    padding: 24px;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    gap: 18px;
-  }
-
-  .landing-page__nav {
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .landing-page__name,
-  .landing-page__link {
-    font-size: 12px;
   }
 }
