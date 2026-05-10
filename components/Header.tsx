@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -8,67 +8,57 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const closeMenu = () => setMenuOpen(false);
+  useEffect(() => { setMenuOpen(false); }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <header className="site-header" id="top">
       <div className="site-identity">
         <p className="site-title">
-          <Link href="/">YENEGH BADIMAYALEW</Link>
+          <Link href="/" onClick={() => setMenuOpen(false)}>
+            YENEGH BADIMAYALEW
+          </Link>
         </p>
       </div>
-
-      <nav className="main-nav" aria-label="Main navigation">
-        <Link href="/" className={pathname === "/" ? "is-active" : ""}>
-          Home
-        </Link>
-        <Link
-          href="/portfolio"
-          className={pathname === "/portfolio" ? "is-active" : ""}
-        >
-          Portfolio
-        </Link>
-        <Link href="/cv" className={pathname === "/cv" ? "is-active" : ""}>
-          About
-        </Link>
-        <Link
-          href="/archive"
-          className={pathname === "/archive" ? "is-active" : ""}
-        >
-          Archive
-        </Link>
-      </nav>
 
       <button
         className="hamburger"
         type="button"
         aria-label={menuOpen ? "Close menu" : "Open menu"}
         aria-expanded={menuOpen}
-        onClick={() => setMenuOpen((prev) => !prev)}
+        onClick={() => setMenuOpen((p) => !p)}
       >
         <span />
         <span />
         <span />
       </button>
 
-      {menuOpen ? (
-        <div className="mobile-menu">
-          <nav className="mobile-menu__nav" aria-label="Mobile navigation">
-            <Link href="/" onClick={closeMenu}>
-              Home
-            </Link>
-            <Link href="/portfolio" onClick={closeMenu}>
-              Portfolio
-            </Link>
-            <Link href="/cv" onClick={closeMenu}>
-              About
-            </Link>
-            <Link href="/archive" onClick={closeMenu}>
-              Archive
-            </Link>
+      {menuOpen && (
+        <div className="nav-overlay" onClick={() => setMenuOpen(false)}>
+          <nav
+            className="nav-overlay__nav"
+            onClick={(e) => e.stopPropagation()}
+            aria-label="Main navigation"
+          >
+            <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link href="/portfolio" onClick={() => setMenuOpen(false)}>Portfolio</Link>
+            <Link href="/archive" onClick={() => setMenuOpen(false)}>Archive</Link>
+            <Link href="/cv" onClick={() => setMenuOpen(false)}>About</Link>
           </nav>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }

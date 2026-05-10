@@ -72,6 +72,8 @@ select {
   width: 100%;
   margin: 0 auto;
   padding: 0 48px;
+  background: var(--bg);
+  min-height: 100vh;
 }
 
 /* Subtle fade-in animation applied when a new page loads */
@@ -87,10 +89,7 @@ select {
 
 /* =====================================================
    HEADER
-   The top bar shown on every page. Contains the site
-   name and role on the left, and navigation links on
-   the right. On mobile the nav is replaced by a
-   hamburger menu — see the Mobile Menu section below.
+   Site name left, hamburger right on all screen sizes.
    ===================================================== */
 
 .site-header {
@@ -101,17 +100,15 @@ select {
   padding: 18px 0 28px;
   margin-bottom: 28px;
   font-size: 13px;
-  align-items: start;
+  align-items: center;
 }
 
 .site-identity {
   display: flex;
   flex-direction: column;
-  gap: 2px;
 }
 
-.site-title,
-.site-role {
+.site-title {
   margin: 0;
 }
 
@@ -127,69 +124,77 @@ select {
   opacity: 0.5;
 }
 
-.site-role {
-  font-weight: 500;
-}
-
-.main-nav {
-  justify-self: end;
-  display: flex;
-  gap: 18px;
-  text-transform: uppercase;
-  align-items: flex-start;
-}
-
-.main-nav a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* The current page's nav link is dimmed to show where you are */
-.main-nav a.is-active {
-  opacity: 0.55;
-}
-
 
 /* =====================================================
-   MOBILE MENU
-   The hamburger icon and the dropdown it reveals.
-   Both are hidden on desktop — the Mobile section
-   at the bottom of this file switches them on.
+   HAMBURGER & FULL-SCREEN NAV OVERLAY
    ===================================================== */
 
-/* Hidden on desktop; shown on mobile */
 .hamburger {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   justify-self: end;
-  align-self: start;
+  align-self: center;
   width: 40px;
   height: 40px;
   padding: 0;
   border: none;
   background: transparent;
   cursor: pointer;
+  position: relative;
+  z-index: 600;
 }
 
 .hamburger span {
   display: block;
   width: 18px;
   height: 1px;
-  margin: 4px auto;
-  background: var(--fg);
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  background: #222;
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-/* Hidden on desktop; shown on mobile */
-.mobile-menu {
-  display: none;
-  position: absolute;
-  top: 60px;
-  right: 0;
-  width: 200px;
+.hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-5px) rotate(-45deg);
+}
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
   background: var(--bg);
-  border: 1px solid var(--line);
-  padding: 16px;
-  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-overlay__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav-overlay__nav a {
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--fg);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: opacity 0.2s ease;
+}
+
+.nav-overlay__nav a:hover {
+  opacity: 0.4;
 }
 
 
@@ -1615,17 +1620,10 @@ select {
    ===================================================== */
 
 @media (max-width: 900px) {
-  /* Header, hero, and project intro collapse to one column */
-  .site-header,
+  /* Hero and project intro collapse to one column on tablet */
   .hero,
   .project-intro {
     grid-template-columns: 1fr;
-  }
-
-  .site-header nav,
-  .site-header .tagline {
-    justify-self: start;
-    text-align: left;
   }
 
   /* Portfolio gallery: keep 2 columns on tablet */
@@ -1760,39 +1758,9 @@ select {
   }
 
   .site-header {
-    grid-template-columns: 1fr auto;
     gap: 12px;
     padding: 18px 0 24px;
     margin-bottom: 20px;
-  }
-
-  /* Desktop nav hidden; hamburger button shown instead */
-  .main-nav {
-    display: none;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  /* Mobile dropdown nav — revealed when the hamburger is tapped */
-  .mobile-menu {
-    display: block;
-    grid-column: 1 / -1;
-    border-top: 1px solid var(--line);
-    padding-top: 12px;
-    margin-top: 6px;
-  }
-
-  .mobile-menu__nav {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .mobile-menu__nav a {
-    text-transform: uppercase;
-    font-size: 13px;
   }
 
   .hero {

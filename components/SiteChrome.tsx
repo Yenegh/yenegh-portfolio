@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Header } from "@/components/Header";
 
@@ -7,6 +8,15 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isLandingPage = pathname === "/";
   const isBarePage = isLandingPage || pathname === "/dunnage";
+
+  useEffect(() => {
+    document.documentElement.style.background = "#f8f8f6";
+    document.body.style.background = "#f8f8f6";
+    return () => {
+      document.documentElement.style.background = "";
+      document.body.style.background = "";
+    };
+  }, []);
 
   if (isBarePage) {
     return <>{children}</>;
