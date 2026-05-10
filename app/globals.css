@@ -5,7 +5,7 @@
    ===================================================== */
 
 :root {
-  --bg: #efeee8;          /* page background — a warm off-white */
+  --bg: #f8f8f6;          /* page background — a cool off-white */
   --fg: #1e1e1e;          /* main text colour — near-black */
   --muted: #737373;       /* secondary text — labels, captions, metadata */
   --line: #e2e0d8;        /* subtle border and divider colour */
@@ -117,7 +117,7 @@ select {
 
 .site-title a {
   display: inline-block;
-  font-weight: 800;
+  font-weight: 400;
   color: inherit;
   text-decoration: none;
   transition: opacity 0.2s ease;
@@ -195,56 +195,29 @@ select {
 
 /* =====================================================
    FOOTER
-   The bottom bar shown on every page. Contains links,
-   copyright text, and other site-level information.
-   The footer has its own responsive adjustments below
-   for desktop and mobile rather than in the shared
-   responsive sections at the end of the file.
+   Single-line bottom bar. Recedes with small, light text.
    ===================================================== */
 
 .site-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   margin-top: 64px;
-  padding: 18px 0 14px;
-  font-size: 12px;
+  padding: 14px 0 12px;
+  font-size: 10px;
+  font-weight: 300;
   line-height: 1.4;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 18px 24px;
-  align-items: start;
-}
-
-.site-footer__row {
+  opacity: 0.5;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  gap: 14px;
-}
-
-.site-footer__row--top {
-  grid-column: 1 / -1;
-  justify-content: space-between;
-}
-
-.site-footer__row--bottom {
-  grid-column: 1 / -1;
-  justify-content: space-between;
-  padding-top: 2px;
+  gap: 16px;
 }
 
 .site-footer__group {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   min-width: 0;
-}
-
-.site-footer__link,
-.site-footer__text {
-  display: inline-block;
-  line-height: 1.4;
-  white-space: nowrap;
 }
 
 .site-footer__link {
@@ -257,68 +230,8 @@ select {
   opacity: 0.6;
 }
 
-.site-footer__link--muted,
-.site-footer__text--muted {
-  opacity: 0.7;
-}
-
-/* Footer on desktop — slightly tighter padding and right-aligned last group */
-@media (min-width: 769px) {
-  .site-footer {
-    padding-top: 16px;
-    padding-bottom: 12px;
-  }
-
-  .site-footer__row--top .site-footer__group:first-child {
-    justify-content: flex-start;
-  }
-
-  .site-footer__row--top .site-footer__group:last-child,
-  .site-footer__row--bottom .site-footer__group:last-child {
-    justify-content: flex-end;
-    text-align: right;
-  }
-}
-
-/* Footer on mobile — stacks vertically */
-@media (max-width: 768px) {
-  .site-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding-top: 14px;
-    padding-bottom: 14px;
-  }
-
-  .site-footer__row,
-  .site-footer__row--top {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 8px;
-    width: 100%;
-  }
-
-  .site-footer__row--bottom {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
-    width: 100%;
-  }
-
-  .site-footer__group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 12px;
-    justify-content: flex-start;
-  }
-
-  .site-footer__link,
-  .site-footer__text {
-    white-space: normal;
-  }
+.site-footer__text {
+  display: inline-block;
 }
 
 
@@ -409,8 +322,8 @@ select {
 .gallery-wall {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  padding: 32px 0 80px;
+  gap: 8px;
+  padding: 0 0 80px;
 }
 
 .gallery-wall__item {
@@ -1944,8 +1857,8 @@ select {
   /* Portfolio gallery: single column on mobile */
   .gallery-wall {
     grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 16px 0 48px;
+    gap: 6px;
+    padding: 0 0 48px;
   }
 
   .gallery-wall__image-wrap {
@@ -2071,15 +1984,9 @@ select {
     right: 4px;
   }
 
-  /* Footer stacks vertically on mobile */
+  /* Footer wraps on mobile */
   .site-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .site-footer__left,
-  .site-footer__right {
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 8px 16px;
   }
 }

@@ -171,7 +171,6 @@ export default function CVPage() {
     <main className="cv-page">
       <section className="cv-header">
         <h1 className="page-title">Yenegh Badimayalew</h1>
-        <p className="cv-subtitle">Architectural Designer</p>
 
         <div className="cv-contact">
           <span>021-243-6488</span>

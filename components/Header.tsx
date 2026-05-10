@@ -16,7 +16,6 @@ export function Header() {
         <p className="site-title">
           <Link href="/">YENEGH BADIMAYALEW</Link>
         </p>
-        <p className="site-role">Architectural Designer</p>
       </div>
 
       <nav className="main-nav" aria-label="Main navigation">
